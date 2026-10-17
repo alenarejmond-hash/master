@@ -244,7 +244,7 @@ const getMockData = (lang) => ({
     city: DICT[lang].city,
     location: DICT[lang].location,
     mapUrl: "https://www.google.com/maps/search/?api=1&query=Эчмиадзин+Маштоца+48",
-    avatar: "https://images.unsplash.com/photo-1522337660859-02fbefca4702?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=400&q=80",
+    avatar: "/photo-1.jpg",
     status: DICT[lang].status
   },
   services: [
@@ -362,18 +362,13 @@ const Toast = ({ message, isVisible, isError = false }) => (
   </div>
 );
 
-const SectionTitle = ({ title, icon: Icon, t, activeTemplate, subtitle }) => {
+const SectionTitle = ({ title, icon: Icon, t, activeTemplate }) => {
   if (activeTemplate === '2') {
     return (
       <div className="flex items-center justify-between mb-4 border-b border-[#1E1C1A]/15 pb-2">
         <h2 className="text-xs uppercase tracking-[0.25em] font-mono text-[#1E1C1A] font-semibold">
           {title}
         </h2>
-        {subtitle && (
-          <span className="text-[10px] font-mono tracking-widest text-[#6B635B] uppercase">
-            {subtitle}
-          </span>
-        )}
       </div>
     );
   }
@@ -764,21 +759,11 @@ export default function App() {
         </div>
       </div>
 
-      {/* Top Bar: Location & Minimal Language Switcher */}
+      {/* Top Bar: Minimal Language Switcher */}
       {activeTemplate === '1' ? (
         <div 
-          className="w-full max-w-md mx-auto px-5 pt-3 pb-3 flex items-center justify-between relative z-30"
+          className="w-full max-w-md mx-auto px-5 pt-3 pb-1 flex items-center justify-end relative z-30"
         >
-          <a 
-            href={data.master.mapUrl} 
-            target="_blank" 
-            rel="noopener noreferrer" 
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#EADBCE]/60 border border-[#D8C7B5] shadow-xs text-xs font-medium text-[#2B231F] whitespace-nowrap shrink-0 hover:border-[#C5A059] active:scale-95 transition-all"
-          >
-            <MapPin size={13} className="text-[#9E7A3E] shrink-0" />
-            <span className="tracking-wide">{data.master.city}</span>
-          </a>
-
           <div className="flex items-center gap-1.5 text-[11px] tracking-wider font-sans uppercase font-medium">
             <button 
               onClick={() => handleLanguageChange('hy')} 
@@ -804,18 +789,8 @@ export default function App() {
         </div>
       ) : (
         <div 
-          className="w-full max-w-md mx-auto px-5 pt-3 pb-3 flex items-center justify-between relative z-30"
+          className="w-full max-w-md mx-auto px-5 pt-3 pb-1 flex items-center justify-end relative z-30"
         >
-          <a 
-            href={data.master.mapUrl} 
-            target="_blank" 
-            rel="noopener noreferrer" 
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-none border border-[#1E1C1A]/20 bg-[#FCFAF7] text-xs font-mono uppercase tracking-wider text-[#1E1C1A] whitespace-nowrap shrink-0 hover:bg-[#1E1C1A] hover:text-white transition-all duration-300"
-          >
-            <MapPin size={12} className="shrink-0 text-[#1E1C1A]" />
-            <span>{data.master.city}</span>
-          </a>
-
           <div className="flex items-center gap-2 text-[11px] font-mono tracking-widest uppercase font-medium text-[#1E1C1A]">
             <button 
               onClick={() => handleLanguageChange('hy')} 
@@ -865,6 +840,15 @@ export default function App() {
               >
                 {data.master.name}
               </h1>
+              <a 
+                href={data.master.mapUrl} 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="inline-flex items-center gap-1.5 mt-2.5 text-xs text-[#EADBCE] hover:text-white transition-colors group/loc"
+              >
+                <MapPin size={13} className="text-[#C5A059] shrink-0" />
+                <span className="tracking-wide underline underline-offset-4 decoration-[#C5A059]/70 group-hover/loc:decoration-white">{data.master.location}</span>
+              </a>
             </div>
           </div>
 
@@ -887,20 +871,14 @@ export default function App() {
                 alt={data.master.name} 
                 className="w-full h-full object-cover object-top filter grayscale-[25%] contrast-[1.05] transition-transform duration-700 group-hover:scale-105" 
               />
-              <div className="absolute top-3 left-3 text-[9px] font-mono tracking-widest uppercase bg-[#1E1C1A]/85 text-[#FAF8F5] px-2 py-0.5">
-                Portrait
-              </div>
             </div>
 
             <div className="w-[39%] aspect-[3/4] relative overflow-hidden bg-[#EAE4D9] border border-[#E5DFD5] shadow-xs mt-10 group">
               <img 
-                src="https://images.unsplash.com/photo-1604654894610-df63bc536371?auto=format&fit=crop&w=600&q=80" 
-                alt="Aesthetic Macro" 
+                src="/photo-2.jpg" 
+                alt="Detail" 
                 className="w-full h-full object-cover filter contrast-[1.05] transition-transform duration-700 group-hover:scale-105" 
               />
-              <div className="absolute bottom-2.5 right-2.5 text-[9px] font-mono tracking-widest uppercase bg-[#1E1C1A]/85 text-[#FAF8F5] px-2 py-0.5">
-                Detail
-              </div>
             </div>
           </div>
 
@@ -917,6 +895,15 @@ export default function App() {
             <h1 className="text-3xl sm:text-4xl font-light tracking-[0.06em] uppercase text-[#1E1C1A] leading-tight">
               {data.master.name}
             </h1>
+            <a 
+              href={data.master.mapUrl} 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="inline-flex items-center gap-1.5 mt-3 text-xs font-mono text-[#6B635B] hover:text-[#1E1C1A] transition-colors group/loc"
+            >
+              <MapPin size={12} className="shrink-0 text-[#1E1C1A]" />
+              <span className="underline underline-offset-2 decoration-[#1E1C1A]/40 group-hover/loc:decoration-[#1E1C1A]">{data.master.location}</span>
+            </a>
           </div>
 
           <button 
@@ -935,7 +922,7 @@ export default function App() {
         <section>
           {activeTemplate === '1' ? (
             <>
-              <SectionTitle title={d.availableSlots} icon={Sparkles} t={t} activeTemplate={activeTemplate} subtitle="Available Slots" />
+              <SectionTitle title={d.availableSlots} icon={Sparkles} t={t} activeTemplate={activeTemplate} />
               {isLoadingDates ? (
                 <div className={`w-full p-6 rounded-2xl border flex flex-col items-center gap-4 transition-colors duration-300 ${t.cardBg} ${t.cardBorder}`}>
                   <div className={`w-8 h-8 rounded-full animate-spin border-3 border-t-transparent ${t.accentText.replace('text-', 'border-')}`} style={{borderTopColor: 'transparent'}} />
@@ -986,7 +973,6 @@ export default function App() {
                 <h2 className="text-xs uppercase tracking-[0.25em] font-mono text-[#1E1C1A] font-semibold">
                   {d.availableSlots}
                 </h2>
-                <span className="text-[10px] font-mono tracking-widest text-[#6B635B] uppercase">Personal Access</span>
               </div>
 
               {isLoadingDates ? (
@@ -1026,7 +1012,7 @@ export default function App() {
         <section>
           {activeTemplate === '1' ? (
             <>
-              <SectionTitle title={d.priceList} icon={Star} t={t} activeTemplate={activeTemplate} subtitle="Menu Lookbook" />
+              <SectionTitle title={d.priceList} icon={Star} t={t} activeTemplate={activeTemplate} />
               <div className="flex items-center justify-center gap-3 sm:gap-6 border-b border-[#E7DFD5]/60 pb-3 mb-6 overflow-x-auto scrollbar-hide">
                 {categories.map(category => (
                   <button
@@ -1092,7 +1078,6 @@ export default function App() {
                 <h2 className="text-xs uppercase tracking-[0.25em] font-mono text-[#1E1C1A] font-semibold">
                   {d.priceList}
                 </h2>
-                <span className="text-[10px] font-mono tracking-widest text-[#6B635B] uppercase">Menu Lookbook</span>
               </div>
 
               <div className="flex border-b border-[#1E1C1A]/10 pb-3 mb-5 gap-2 overflow-x-auto scrollbar-hide">
@@ -1144,16 +1129,9 @@ export default function App() {
 
                       {isExpanded && (
                         <div className="px-5 pb-5 pt-2 border-t border-[#E5DFD5]">
-                          <p className="text-sm text-[#4A443E] leading-relaxed mb-4 font-light">
+                          <p className="text-sm text-[#4A443E] leading-relaxed font-light">
                             {service.description}
                           </p>
-                          <div className="w-full aspect-[16/9] rounded-none overflow-hidden bg-[#EAE4D9]">
-                            <img 
-                              src="https://images.unsplash.com/photo-1632345031435-8727f6897d53?auto=format&fit=crop&w=800&q=80" 
-                              alt={service.name} 
-                              className="w-full h-full object-cover filter contrast-[1.05]"
-                            />
-                          </div>
                         </div>
                       )}
                     </div>
@@ -1165,7 +1143,7 @@ export default function App() {
         </section>
 
         <section>
-          <SectionTitle title={d.paymentDetails} icon={CreditCard} t={t} activeTemplate={activeTemplate} subtitle="Payment Details" />
+          <SectionTitle title={d.paymentDetails} icon={CreditCard} t={t} activeTemplate={activeTemplate} />
           <div className={`${activeTemplate === '2' ? 'rounded-none border-[#E5DFD5]' : 'rounded-3xl ' + t.cardBorder} p-2 border flex flex-col gap-1 transition-colors duration-300 ${t.cardBg} ${t.cardShadow}`}>
             {data.payments.map(payment => (
               <div 
@@ -1195,7 +1173,7 @@ export default function App() {
         </section>
 
         <section>
-          <SectionTitle title={d.rules} icon={ShieldAlert} t={t} activeTemplate={activeTemplate} subtitle="Policy & Terms" />
+          <SectionTitle title={d.rules} icon={ShieldAlert} t={t} activeTemplate={activeTemplate} />
           <div className={`${activeTemplate === '2' ? 'rounded-none border-[#E5DFD5]' : 'rounded-3xl ' + t.cardBorder} p-5 border transition-colors duration-300 ${t.policyBg}`}>
             <ul className="space-y-3">
               {data.policies.map((policy, idx) => (
@@ -1209,7 +1187,7 @@ export default function App() {
         </section>
 
         <section>
-          <SectionTitle title={d.leaveReview} icon={Star} t={t} activeTemplate={activeTemplate} subtitle="Feedback" />
+          <SectionTitle title={d.leaveReview} icon={Star} t={t} activeTemplate={activeTemplate} />
           <div className={`${activeTemplate === '2' ? 'rounded-none border-[#E5DFD5]' : 'rounded-3xl ' + t.cardBorder} p-2 border flex gap-2 transition-colors duration-300 ${t.cardBg} ${t.cardShadow}`}>
             <a href="#" target="_blank" rel="noopener noreferrer" className={`flex-1 py-3.5 ${activeTemplate === '2' ? 'rounded-none font-mono text-xs uppercase tracking-widest' : 'rounded-2xl'} flex flex-col items-center justify-center gap-1.5 transition-all duration-300 active:scale-95 hover:bg-black/5 dark:hover:bg-white/5`}>
                <span className={`font-bold text-sm ${t.cardTextMain} ${activeTemplate === '2' ? 'font-mono uppercase text-xs tracking-wider' : ''}`}>Google</span>

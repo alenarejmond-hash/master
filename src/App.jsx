@@ -362,12 +362,34 @@ const Toast = ({ message, isVisible, isError = false }) => (
   </div>
 );
 
-const SectionTitle = ({ title, icon: Icon, t }) => (
-  <div className="flex items-center gap-2 mb-4 px-1">
-    {Icon && <Icon size={20} className={t.appTextMain} />}
-    <h2 className={`text-xl font-bold tracking-tight transition-colors duration-300 ${t.appTextMain}`}>{title}</h2>
-  </div>
-);
+const SectionTitle = ({ title, icon: Icon, t, activeTemplate, subtitle }) => {
+  if (activeTemplate === '2') {
+    return (
+      <div className="flex items-center justify-between mb-4 border-b border-[#1E1C1A]/15 pb-2">
+        <h2 className="text-xs uppercase tracking-[0.25em] font-mono text-[#1E1C1A] font-semibold">
+          {title}
+        </h2>
+        {subtitle && (
+          <span className="text-[10px] font-mono tracking-widest text-[#6B635B] uppercase">
+            {subtitle}
+          </span>
+        )}
+      </div>
+    );
+  }
+
+  return (
+    <div className="flex items-center gap-2 mb-4 px-1">
+      {Icon && <Icon size={18} className={t.accentText || t.appTextMain} />}
+      <h2 
+        className={`text-2xl font-normal tracking-wide transition-colors duration-300 ${t.appTextMain}`}
+        style={{ fontFamily: 'Didot, "Bodoni MT", "Cormorant Garamond", Georgia, serif' }}
+      >
+        {title}
+      </h2>
+    </div>
+  );
+};
 
 const parseSheetDate = (dateStr, lang) => {
   const [d, m, y] = dateStr.split('.');
@@ -913,7 +935,7 @@ export default function App() {
         <section>
           {activeTemplate === '1' ? (
             <>
-              <SectionTitle title={d.availableSlots} icon={Sparkles} t={t} />
+              <SectionTitle title={d.availableSlots} icon={Sparkles} t={t} activeTemplate={activeTemplate} subtitle="Available Slots" />
               {isLoadingDates ? (
                 <div className={`w-full p-6 rounded-2xl border flex flex-col items-center gap-4 transition-colors duration-300 ${t.cardBg} ${t.cardBorder}`}>
                   <div className={`w-8 h-8 rounded-full animate-spin border-3 border-t-transparent ${t.accentText.replace('text-', 'border-')}`} style={{borderTopColor: 'transparent'}} />
@@ -936,12 +958,12 @@ export default function App() {
                       <p className="text-xs font-medium leading-snug">{bannerText}</p>
                     </div>
                   )}
-                  <div className="flex gap-2.5 overflow-x-auto pb-2 -mx-5 px-5 scrollbar-hide snap-x">
+                  <div className="flex gap-2.5 overflow-x-auto pb-2 w-full scrollbar-hide">
                     {flattenedSlots.map(slot => (
                       <div 
                         key={slot.id}
                         onClick={() => openBooking({ fullDate: slot.fullDate, displayDate: slot.displayDate, time: slot.time })}
-                        className="shrink-0 w-[135px] p-3.5 rounded-2xl bg-[#FAF8F5] border border-[#E7DFD5] shadow-[0_4px_20px_-8px_rgba(44,36,32,0.06)] hover:border-[#C5A059] transition-all cursor-pointer snap-start flex flex-col justify-center active:scale-95 group"
+                        className="shrink-0 w-[135px] p-3.5 rounded-2xl bg-[#FAF8F5] border border-[#E7DFD5] shadow-[0_4px_20px_-8px_rgba(44,36,32,0.06)] hover:border-[#C5A059] transition-all cursor-pointer flex flex-col justify-center active:scale-95 group"
                       >
                         <span 
                           className="text-base font-normal tracking-wide text-[#2B231F] mb-0.5"
@@ -979,12 +1001,12 @@ export default function App() {
                   </p>
                 </div>
               ) : (
-                <div className="flex gap-2.5 overflow-x-auto pb-2 -mx-5 px-5 scrollbar-hide snap-x">
+                <div className="flex gap-2.5 overflow-x-auto pb-2 w-full scrollbar-hide">
                   {flattenedSlots.map(slot => (
                     <div 
                       key={slot.id}
                       onClick={() => openBooking({ fullDate: slot.fullDate, displayDate: slot.displayDate, time: slot.time })}
-                      className="shrink-0 w-[135px] p-3.5 bg-[#FCFAF7] border border-[#E5DFD5] hover:border-[#1E1C1A] transition-all cursor-pointer snap-start rounded-none flex flex-col justify-center active:scale-95"
+                      className="shrink-0 w-[135px] p-3.5 bg-[#FCFAF7] border border-[#E5DFD5] hover:border-[#1E1C1A] transition-all cursor-pointer rounded-none flex flex-col justify-center active:scale-95"
                     >
                       <span className="text-xs font-mono uppercase tracking-widest text-[#1E1C1A] font-semibold mb-1">
                         {slot.displayDate}
@@ -1004,7 +1026,7 @@ export default function App() {
         <section>
           {activeTemplate === '1' ? (
             <>
-              <SectionTitle title={d.priceList} icon={Star} t={t} />
+              <SectionTitle title={d.priceList} icon={Star} t={t} activeTemplate={activeTemplate} subtitle="Menu Lookbook" />
               <div className="flex items-center justify-center gap-3 sm:gap-6 border-b border-[#E7DFD5]/60 pb-3 mb-6 overflow-x-auto scrollbar-hide">
                 {categories.map(category => (
                   <button
@@ -1143,7 +1165,7 @@ export default function App() {
         </section>
 
         <section>
-          <SectionTitle title={d.paymentDetails} icon={CreditCard} t={t} />
+          <SectionTitle title={d.paymentDetails} icon={CreditCard} t={t} activeTemplate={activeTemplate} subtitle="Payment Details" />
           <div className={`${activeTemplate === '2' ? 'rounded-none border-[#E5DFD5]' : 'rounded-3xl ' + t.cardBorder} p-2 border flex flex-col gap-1 transition-colors duration-300 ${t.cardBg} ${t.cardShadow}`}>
             {data.payments.map(payment => (
               <div 
@@ -1156,7 +1178,7 @@ export default function App() {
                     <payment.icon size={20} />
                   </div>
                   <div>
-                    <p className={`text-xs font-medium transition-colors duration-300 ${t.cardTextSub}`}>{payment.name}</p>
+                    <p className={`text-xs font-medium transition-colors duration-300 ${activeTemplate === '2' ? 'font-mono uppercase text-[10px] tracking-wider text-[#6B635B]' : t.cardTextSub}`}>{payment.name}</p>
                     <p className={`text-sm font-bold font-mono tracking-wide mt-0.5 transition-colors duration-300 ${t.cardTextMain}`}>{payment.number}</p>
                   </div>
                 </div>
@@ -1173,13 +1195,13 @@ export default function App() {
         </section>
 
         <section>
-          <SectionTitle title={d.rules} icon={ShieldAlert} t={t} />
+          <SectionTitle title={d.rules} icon={ShieldAlert} t={t} activeTemplate={activeTemplate} subtitle="Policy & Terms" />
           <div className={`${activeTemplate === '2' ? 'rounded-none border-[#E5DFD5]' : 'rounded-3xl ' + t.cardBorder} p-5 border transition-colors duration-300 ${t.policyBg}`}>
             <ul className="space-y-3">
               {data.policies.map((policy, idx) => (
                 <li key={idx} className="flex gap-3 text-sm leading-snug">
                   <span className={`w-1.5 h-1.5 ${activeTemplate === '2' ? 'rounded-none' : 'rounded-full'} mt-1.5 flex-shrink-0 transition-colors duration-300 ${t.bullet}`} />
-                  <span className={`transition-colors duration-300 ${t.cardTextMain}`}>{policy}</span>
+                  <span className={`transition-colors duration-300 ${activeTemplate === '2' ? 'font-mono text-xs tracking-wide text-[#3D3731]' : t.cardTextMain}`}>{policy}</span>
                 </li>
               ))}
             </ul>
@@ -1187,16 +1209,16 @@ export default function App() {
         </section>
 
         <section>
-          <SectionTitle title={d.leaveReview} icon={Star} t={t} />
+          <SectionTitle title={d.leaveReview} icon={Star} t={t} activeTemplate={activeTemplate} subtitle="Feedback" />
           <div className={`${activeTemplate === '2' ? 'rounded-none border-[#E5DFD5]' : 'rounded-3xl ' + t.cardBorder} p-2 border flex gap-2 transition-colors duration-300 ${t.cardBg} ${t.cardShadow}`}>
-            <a href="#" target="_blank" rel="noopener noreferrer" className={`flex-1 py-3.5 ${activeTemplate === '2' ? 'rounded-none' : 'rounded-2xl'} flex flex-col items-center justify-center gap-1.5 transition-all duration-300 active:scale-95 hover:bg-black/5 dark:hover:bg-white/5`}>
-               <span className={`font-bold text-sm ${t.cardTextMain}`}>Google</span>
-               <span className={`text-[10px] font-medium opacity-60 ${t.cardTextSub}`}>{d.maps}</span>
+            <a href="#" target="_blank" rel="noopener noreferrer" className={`flex-1 py-3.5 ${activeTemplate === '2' ? 'rounded-none font-mono text-xs uppercase tracking-widest' : 'rounded-2xl'} flex flex-col items-center justify-center gap-1.5 transition-all duration-300 active:scale-95 hover:bg-black/5 dark:hover:bg-white/5`}>
+               <span className={`font-bold text-sm ${t.cardTextMain} ${activeTemplate === '2' ? 'font-mono uppercase text-xs tracking-wider' : ''}`}>Google</span>
+               <span className={`text-[10px] font-medium opacity-60 ${activeTemplate === '2' ? 'font-mono uppercase' : ''} ${t.cardTextSub}`}>{d.maps}</span>
             </a>
             <div className={`w-px bg-current opacity-10 my-2 ${t.cardBorder}`} />
-            <a href="#" target="_blank" rel="noopener noreferrer" className={`flex-1 py-3.5 ${activeTemplate === '2' ? 'rounded-none' : 'rounded-2xl'} flex flex-col items-center justify-center gap-1.5 transition-all duration-300 active:scale-95 hover:bg-black/5 dark:hover:bg-white/5`}>
-               <span className={`font-bold text-sm ${t.cardTextMain}`}>Yandex</span>
-               <span className={`text-[10px] font-medium opacity-60 ${t.cardTextSub}`}>{d.maps}</span>
+            <a href="#" target="_blank" rel="noopener noreferrer" className={`flex-1 py-3.5 ${activeTemplate === '2' ? 'rounded-none font-mono text-xs uppercase tracking-widest' : 'rounded-2xl'} flex flex-col items-center justify-center gap-1.5 transition-all duration-300 active:scale-95 hover:bg-black/5 dark:hover:bg-white/5`}>
+               <span className={`font-bold text-sm ${t.cardTextMain} ${activeTemplate === '2' ? 'font-mono uppercase text-xs tracking-wider' : ''}`}>Yandex</span>
+               <span className={`text-[10px] font-medium opacity-60 ${activeTemplate === '2' ? 'font-mono uppercase' : ''} ${t.cardTextSub}`}>{d.maps}</span>
             </a>
           </div>
         </section>
@@ -1205,21 +1227,26 @@ export default function App() {
 
       <footer className={`mt-12 pt-10 pb-36 px-5 flex flex-col items-center w-full transition-colors duration-300 relative z-10 ${t.footerBg}`}>
         <div className="w-full max-w-xs space-y-3 mb-8">
-          <button onClick={() => setIsQrOpen(true)} className={`w-full py-3.5 ${activeTemplate === '2' ? 'rounded-none' : 'rounded-2xl'} font-semibold flex items-center justify-center gap-3 transition-all duration-300 active:scale-95 ${t.btnSecondary}`}>
+          <button onClick={() => setIsQrOpen(true)} className={`w-full py-3.5 ${activeTemplate === '2' ? 'rounded-none font-mono text-xs uppercase tracking-widest' : 'rounded-2xl font-sans text-xs uppercase tracking-wider font-medium'} flex items-center justify-center gap-3 transition-all duration-300 active:scale-95 ${t.btnSecondary}`}>
             <QrCode size={18} />
             {d.showQr}
           </button>
-          <button onClick={handleDownloadVCard} className={`w-full py-3.5 ${activeTemplate === '2' ? 'rounded-none' : 'rounded-2xl'} font-semibold flex items-center justify-center gap-3 transition-all duration-300 active:scale-95 ${t.btnSecondary}`}>
+          <button onClick={handleDownloadVCard} className={`w-full py-3.5 ${activeTemplate === '2' ? 'rounded-none font-mono text-xs uppercase tracking-widest' : 'rounded-2xl font-sans text-xs uppercase tracking-wider font-medium'} flex items-center justify-center gap-3 transition-all duration-300 active:scale-95 ${t.btnSecondary}`}>
             <UserPlus size={18} />
             {d.addToContacts}
           </button>
-          <button onClick={handleInstallPWA} className={`w-full py-3.5 ${activeTemplate === '2' ? 'rounded-none' : 'rounded-2xl'} font-semibold flex items-center justify-center gap-3 transition-all duration-300 active:scale-95 ${t.btnSecondary} border-2 ${t.inputBorder.replace('focus-within:', '')}`}>
+          <button onClick={handleInstallPWA} className={`w-full py-3.5 ${activeTemplate === '2' ? 'rounded-none font-mono text-xs uppercase tracking-widest' : 'rounded-2xl font-sans text-xs uppercase tracking-wider font-medium'} flex items-center justify-center gap-3 transition-all duration-300 active:scale-95 ${t.btnSecondary} border-2 ${t.inputBorder.replace('focus-within:', '')}`}>
             <Smartphone size={18} />
             {d.installApp}
           </button>
         </div>
 
-        <h3 className={`font-bold mb-6 transition-colors duration-300 ${t.appTextMain}`}>{d.contactMe}</h3>
+        <h3 
+          className={`${activeTemplate === '2' ? 'text-xs uppercase tracking-[0.25em] font-mono text-[#1E1C1A] font-semibold' : 'text-2xl font-normal tracking-wide'} mb-6 transition-colors duration-300 ${t.appTextMain}`}
+          style={activeTemplate === '1' ? { fontFamily: 'Didot, "Bodoni MT", "Cormorant Garamond", Georgia, serif' } : {}}
+        >
+          {d.contactMe}
+        </h3>
         
         <div className="flex justify-center gap-4 mb-8">
           <a href="#" className={`w-12 h-12 ${activeTemplate === '2' ? 'rounded-none' : 'rounded-full'} flex items-center justify-center active:scale-90 transition-all duration-300 shadow-sm ${t.iconWrapper}`}>

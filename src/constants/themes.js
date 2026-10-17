@@ -40,14 +40,30 @@ export const THEMES_V3 = {
   cardShadow: "shadow-[0_10px_30px_-8px_rgba(180,160,140,0.18)]", pillBg: "bg-black/5", skeletonBg: "bg-black/5",
 };
 
+export const THEMES_V4 = {
+  appBg: "bg-[#FBFBFC]", appTextMain: "text-[#09090B]", appTextSub: "text-[#71717A]", headerBg: "bg-transparent",
+  avatarBorder: "border-[#09090B]", glow: "bg-[#881337]/15", cardBg: "bg-[#FFFFFF]", cardBorder: "border-[#E4E4E7]",
+  cardTextMain: "text-[#09090B]", cardTextSub: "text-[#71717A]", btnPrimary: "bg-[#09090B] text-white shadow-[#881337]/25",
+  accentText: "text-[#881337]", accentBg: "bg-[#FFF1F2]", badgeBg: "bg-[#09090B]", badgeText: "text-white",
+  statusBadgeBg: "bg-[#FFF1F2]", statusBadgeText: "text-[#881337]", tabActive: "bg-[#09090B] text-white",
+  tabInactive: "bg-white text-[#71717A] border-[#E4E4E7]", btnSecondary: "bg-white text-[#09090B] border-[#E4E4E7] hover:border-[#881337]",
+  iconWrapper: "bg-[#FFF1F2] text-[#881337]", policyBg: "bg-white", bullet: "bg-[#881337]", footerBg: "bg-[#09090B]",
+  footerBorder: "border-white/10", modalBg: "bg-white", grabber: "bg-[#D4D4D8]", inputBg: "bg-[#F4F4F5] focus-within:bg-white",
+  inputBorder: "border-[#E4E4E7] focus-within:border-[#881337]", inputFocusRing: "focus-within:ring-[#881337]/20",
+  inputText: "text-[#09090B]", successIcon: "text-[#881337]", successBg: "bg-[#FFF1F2]", statusDotBg: "bg-[#881337]",
+  cardShadow: "shadow-[0_10px_30px_-5px_rgba(0,0,0,0.06)]", pillBg: "bg-black/5", skeletonBg: "bg-black/5",
+};
+
 export const THEMES = {
   obsidian: THEMES_V1,
   carbon: THEMES_V2,
-  clean: THEMES_V3
+  clean: THEMES_V3,
+  glam: THEMES_V4
 };
 
 export const THEME_OPTIONS = [
   { id: 'obsidian', color: '#FAF7F2', border: '#C5A059' },
   { id: 'carbon', color: '#F5F2EB', border: '#1E1C1A' },
-  { id: 'clean', color: '#FAF7F2', border: '#5A6B5B' }
+  { id: 'clean', color: '#FAF7F2', border: '#5A6B5B' },
+  { id: 'glam', color: '#09090B', border: '#881337' }
 ];

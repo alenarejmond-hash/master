@@ -3,7 +3,7 @@ import { GOOGLE_APPS_SCRIPT_URL } from './config/api';
 import { formatPhone } from './utils/formatPhone';
 import { parseSheetDate, detectPhoneLanguage } from './utils/dateUtils';
 import { DICT } from './constants/translations';
-import { THEMES_V1, THEMES_V2, THEMES_V3, THEMES } from './constants/themes';
+import { THEMES_V1, THEMES_V2, THEMES_V3, THEMES_V4, THEMES } from './constants/themes';
 import { getMockData } from './data/mockData';
 
 import { Toast } from './components/Toast';
@@ -33,9 +33,9 @@ export default function App() {
     if (typeof window !== 'undefined') {
       const params = new URLSearchParams(window.location.search);
       const v = params.get('v');
-      if (v === '1' || v === '2' || v === '3') return v;
+      if (v === '1' || v === '2' || v === '3' || v === '4') return v;
       const saved = localStorage.getItem('app-beauty-template');
-      if (saved === '1' || saved === '2' || saved === '3') return saved;
+      if (saved === '1' || saved === '2' || saved === '3' || saved === '4') return saved;
     }
     return '1';
   });
@@ -95,7 +95,7 @@ export default function App() {
     localStorage.setItem('app-theme', theme);
   }, [theme]);
 
-  const t = activeTemplate === '3' ? THEMES_V3 : (activeTemplate === '2' ? THEMES_V2 : THEMES_V1);
+  const t = activeTemplate === '4' ? THEMES_V4 : (activeTemplate === '3' ? THEMES_V3 : (activeTemplate === '2' ? THEMES_V2 : THEMES_V1));
 
   useEffect(() => {
     const bgTopColor = t.appBg.replace('bg-[', '').replace(']', '');

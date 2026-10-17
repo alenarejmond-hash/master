@@ -15,7 +15,57 @@ export const ServicesSection = ({
 }) => {
   return (
     <section>
-      {activeTemplate === '3' ? (
+      {activeTemplate === '4' ? (
+        <>
+          <SectionTitle title={d.priceList} icon={Star} t={t} activeTemplate={activeTemplate} />
+          <div className="flex items-center gap-2 overflow-x-auto pb-2 mb-5 scrollbar-hide">
+            {categories.map(category => (
+              <button
+                key={category}
+                onClick={() => setActiveCategory(category)}
+                className={`px-4 py-2 rounded-lg text-xs font-bold tracking-[0.16em] uppercase transition-all duration-300 shrink-0 ${
+                  activeCategory === category 
+                    ? 'bg-[#09090B] text-white shadow-md' 
+                    : 'bg-white text-[#71717A] border border-[#E4E4E7] hover:text-[#09090B]'
+                }`}
+              >
+                {category}
+              </button>
+            ))}
+          </div>
+          <div className="space-y-3.5">
+            {filteredServices.map(service => (
+              <div 
+                key={service.id} 
+                className="relative p-5 rounded-2xl border border-[#E4E4E7] bg-white transition-all duration-300 shadow-[0_4px_16px_-4px_rgba(0,0,0,0.05)] hover:border-[#881337]/50 hover:shadow-[0_8px_24px_-6px_rgba(136,19,55,0.12)] group"
+              >
+                <div className="flex items-start justify-between gap-3 pb-3 border-b border-[#F4F4F5]">
+                  <div className="flex-1">
+                    <h3 className="text-base font-bold text-[#09090B] tracking-tight uppercase group-hover:text-[#881337] transition-colors">
+                      {service.name}
+                    </h3>
+                    <div className="inline-flex items-center gap-1.5 mt-1.5 text-[11px] font-medium text-[#71717A]">
+                      <Clock size={12} strokeWidth={1.5} className="text-[#881337]" />
+                      <span>{service.duration}</span>
+                    </div>
+                  </div>
+                  <div className="flex items-baseline gap-1 shrink-0 bg-[#FFF1F2] px-3 py-1.5 rounded-xl border border-[#FFE4E6]">
+                    <span className="text-2xl font-extrabold tracking-tight text-[#09090B]">
+                      {service.price.toLocaleString('ru-RU')}
+                    </span>
+                    <span className="text-[10px] uppercase font-bold tracking-wider text-[#881337]">
+                      AMD
+                    </span>
+                  </div>
+                </div>
+                <p className="mt-3 text-xs leading-relaxed text-[#71717A]">
+                  {service.description}
+                </p>
+              </div>
+            ))}
+          </div>
+        </>
+      ) : activeTemplate === '3' ? (
         <>
           <SectionTitle title={d.priceList} icon={Star} t={t} activeTemplate={activeTemplate} />
           <div className="flex items-center gap-2 overflow-x-auto pb-2 mb-5 scrollbar-hide">

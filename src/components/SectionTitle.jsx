@@ -1,6 +1,20 @@
 import React from 'react';
 
 export const SectionTitle = ({ title, icon: Icon, t, activeTemplate }) => {
+  if (activeTemplate === '4') {
+    return (
+      <div className="flex items-center justify-between mb-4 px-0.5">
+        <div className="flex items-center gap-2">
+          <span className="w-1.5 h-4 bg-[#881337] rounded-full inline-block" />
+          <h2 className="text-base sm:text-lg font-extrabold tracking-tight uppercase text-[#09090B]">
+            {title}
+          </h2>
+        </div>
+        {Icon && <Icon size={16} strokeWidth={1.5} className="text-[#881337]" />}
+      </div>
+    );
+  }
+
   if (activeTemplate === '3') {
     return (
       <div className="flex items-center gap-2.5 mb-4 px-1">

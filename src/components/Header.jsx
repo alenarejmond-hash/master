@@ -2,6 +2,70 @@ import React from 'react';
 import { MapPin, Calendar } from 'lucide-react';
 
 export const Header = ({ activeTemplate, data, d, openBooking }) => {
+  if (activeTemplate === '4') {
+    return (
+      <header className="px-5 w-full max-w-md mx-auto pt-2 pb-6 flex flex-col items-center">
+        {/* Celebrity editorial cover look */}
+        <div className="w-full relative aspect-[4/4.8] rounded-2xl overflow-hidden bg-[#09090B] shadow-[0_20px_45px_-12px_rgba(0,0,0,0.18)] group border border-[#E4E4E7]">
+          <img 
+            src={data.master.avatar} 
+            alt={data.master.name} 
+            className="w-full h-full object-cover object-top filter contrast-[1.05] transition-transform duration-700 group-hover:scale-105" 
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent pointer-events-none" />
+          
+          {/* Top-left status badge */}
+          <div className="absolute top-4 left-4 inline-flex items-center gap-2 px-3 py-1 rounded-full backdrop-blur-md bg-black/60 border border-white/20 text-[10px] tracking-[0.2em] uppercase text-white font-sans font-semibold">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#881337] animate-pulse" />
+            <span>{data.master.status}</span>
+          </div>
+
+          {/* Top-right floating macro badge */}
+          <div className="absolute top-4 right-4 w-16 h-16 rounded-xl overflow-hidden border-2 border-white/90 shadow-xl group-hover:scale-105 transition-transform duration-300 bg-black">
+            <img 
+              src="/photo-2.jpg" 
+              alt="Macro Detail" 
+              className="w-full h-full object-cover" 
+            />
+          </div>
+
+          {/* Bottom editorial master info */}
+          <div className="absolute bottom-6 left-6 right-6 text-left text-white z-10">
+            <span className="inline-block px-2.5 py-0.5 rounded-md bg-[#881337] text-white text-[9px] font-sans font-bold tracking-[0.2em] uppercase mb-2 shadow-sm">
+              Celebrity Master
+            </span>
+            <p className="text-[10px] uppercase tracking-[0.25em] font-sans text-white/70 font-medium mb-1">
+              {data.master.specialization}
+            </p>
+            <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-white leading-none uppercase">
+              {data.master.name}
+            </h1>
+            <a 
+              href={data.master.mapUrl} 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="inline-flex items-center gap-1.5 mt-2.5 text-xs text-white/80 hover:text-white transition-colors"
+            >
+              <MapPin size={13} strokeWidth={1.5} className="text-[#881337] shrink-0" />
+              <span className="tracking-wide underline underline-offset-4 decoration-[#881337]">{data.master.location}</span>
+            </a>
+          </div>
+        </div>
+
+        {/* Tactile button with deep cherry accent */}
+        <button 
+          onClick={() => openBooking()} 
+          className="mt-5 w-full py-4 px-6 rounded-xl font-sans text-xs tracking-[0.22em] uppercase font-bold shadow-[0_12px_30px_-5px_rgba(136,19,55,0.35)] active:scale-[0.98] transition-all duration-300 flex items-center justify-between bg-[#09090B] hover:bg-[#18181B] text-white border border-[#881337]/60 group"
+        >
+          <span className="pl-2">{d.bookOnline}</span>
+          <div className="w-8 h-8 rounded-lg bg-[#881337] text-white flex items-center justify-center transition-transform duration-300 group-hover:rotate-12 shadow-sm">
+            <Calendar size={15} strokeWidth={1.5} />
+          </div>
+        </button>
+      </header>
+    );
+  }
+
   if (activeTemplate === '1') {
     return (
       <header className="px-5 w-full max-w-md mx-auto pt-2 pb-6 flex flex-col items-center">

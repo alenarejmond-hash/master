@@ -51,6 +51,79 @@ export const Header = ({ activeTemplate, data, d, openBooking }) => {
     );
   }
 
+  if (activeTemplate === '3') {
+    return (
+      <header className="px-5 w-full max-w-md mx-auto pt-2 pb-6 flex flex-col items-center">
+        <div className="relative w-full flex flex-col items-center">
+          
+          {/* Delicately glowing status pill */}
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/90 border border-[#ECE5DC] shadow-xs backdrop-blur-md mb-4">
+            <span className="w-2 h-2 rounded-full bg-[#5A6B5B] animate-pulse" />
+            <span className="text-[11px] uppercase tracking-[0.2em] font-medium text-[#5A6B5B]">
+              {data.master.status}
+            </span>
+          </div>
+
+          {/* Pebble Photo Frame */}
+          <div className="relative group">
+            {/* Soft glowing cashmere aura */}
+            <div className="absolute -inset-3 bg-gradient-to-tr from-[#EADBCE]/70 via-[#F5EEE6]/60 to-[#DCE6DC]/60 rounded-[50px] blur-xl opacity-70 group-hover:opacity-100 transition duration-700 pointer-events-none" />
+            
+            {/* Pebble container with organic asymmetrical curved radius */}
+            <div className="relative w-48 h-56 sm:w-56 sm:h-64 rounded-[46px_24px_46px_28px] overflow-hidden shadow-[0_18px_45px_-12px_rgba(160,140,120,0.32)] border-[5px] border-white bg-[#F5EEE6]">
+              <img 
+                src={data.master.avatar} 
+                alt={data.master.name} 
+                className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105" 
+              />
+            </div>
+
+            {/* Floating Mini Pebble: Macro detail photo badge */}
+            <div className="absolute -bottom-3 -right-2 w-20 h-20 sm:w-22 sm:h-22 rounded-[24px_16px_24px_16px] overflow-hidden border-4 border-white shadow-[0_10px_25px_-5px_rgba(140,120,100,0.3)] bg-white group-hover:scale-105 transition-transform duration-500">
+              <img 
+                src="/photo-2.jpg" 
+                alt="Detail" 
+                className="w-full h-full object-cover" 
+              />
+            </div>
+          </div>
+
+          {/* Master info in clean Japanese spa minimalism */}
+          <div className="text-center mt-6 w-full px-2">
+            <p className="text-[11px] sm:text-xs uppercase tracking-[0.22em] text-[#7C746C] font-medium mb-1.5">
+              {data.master.specialization}
+            </p>
+            <h1 className="text-3xl sm:text-4xl font-normal tracking-tight text-[#2E2A27] leading-tight">
+              {data.master.name}
+            </h1>
+            <div className="flex justify-center mt-3">
+              <a 
+                href={data.master.mapUrl} 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-white/80 border border-[#ECE5DC] text-xs text-[#6B635B] hover:text-[#2E2A27] hover:border-[#D5C8B8] transition-all shadow-xs"
+              >
+                <MapPin size={13} className="text-[#5A6B5B] shrink-0" />
+                <span className="tracking-wide">{data.master.location}</span>
+              </a>
+            </div>
+          </div>
+
+          {/* Пухлая тактильная кнопка записи на всю ширину */}
+          <button 
+            onClick={() => openBooking()} 
+            className="mt-6 w-full py-4 px-6 rounded-full font-medium text-xs tracking-[0.2em] uppercase shadow-[0_14px_32px_-6px_rgba(56,50,46,0.32),inset_0_1px_1px_rgba(255,255,255,0.25)] active:scale-[0.98] transition-all duration-300 flex items-center justify-between bg-gradient-to-r from-[#38322E] via-[#453D37] to-[#38322E] text-[#FAF8F5] border border-[#524942]/40 group"
+          >
+            <span className="pl-3">{d.bookOnline}</span>
+            <div className="w-9 h-9 rounded-full bg-white/15 text-[#FAF8F5] flex items-center justify-center transition-transform duration-300 group-hover:scale-110 shadow-inner">
+              <Calendar size={16} />
+            </div>
+          </button>
+        </div>
+      </header>
+    );
+  }
+
   return (
     <header className="px-5 w-full max-w-md mx-auto pt-3 pb-8">
       <div className="flex items-start justify-between gap-3 w-full">

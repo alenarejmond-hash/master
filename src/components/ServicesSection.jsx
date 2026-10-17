@@ -15,7 +15,57 @@ export const ServicesSection = ({
 }) => {
   return (
     <section>
-      {activeTemplate === '1' ? (
+      {activeTemplate === '3' ? (
+        <>
+          <SectionTitle title={d.priceList} icon={Star} t={t} activeTemplate={activeTemplate} />
+          <div className="flex items-center gap-2 overflow-x-auto pb-2 mb-5 scrollbar-hide">
+            {categories.map(category => (
+              <button
+                key={category}
+                onClick={() => setActiveCategory(category)}
+                className={`px-5 py-2.5 rounded-full text-xs font-medium tracking-wider uppercase transition-all duration-300 shrink-0 ${
+                  activeCategory === category 
+                    ? 'bg-[#38322E] text-white shadow-md' 
+                    : 'bg-white/90 text-[#7C746C] border border-[#ECE5DC] hover:bg-white shadow-xs'
+                }`}
+              >
+                {category}
+              </button>
+            ))}
+          </div>
+          <div className="space-y-4">
+            {filteredServices.map(service => (
+              <div 
+                key={service.id} 
+                className="relative p-6 rounded-[28px] border border-[#ECE5DC] bg-white transition-all duration-300 shadow-[0_8px_24px_-8px_rgba(180,160,140,0.14)] hover:shadow-[0_12px_32px_-8px_rgba(180,160,140,0.22)]"
+              >
+                <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1.5 sm:gap-4 pb-2.5 border-b border-[#F0EAE1]">
+                  <h3 className="text-base sm:text-lg font-medium text-[#2E2A27]">
+                    {service.name}
+                  </h3>
+                  <div className="flex items-baseline gap-1 self-start sm:self-auto shrink-0">
+                    <span className="text-lg font-semibold text-[#38322E]">
+                      {service.price.toLocaleString('ru-RU')}
+                    </span>
+                    <span className="text-[11px] uppercase tracking-wider text-[#7C746C]">
+                      AMD
+                    </span>
+                  </div>
+                </div>
+
+                <div className="inline-flex items-center gap-1.5 mt-3 mb-2 px-3 py-1 rounded-full bg-[#F5EFE9] text-[11px] font-medium text-[#7C746C]">
+                  <Clock size={12} className="text-[#5A6B5B]" />
+                  <span>{service.duration}</span>
+                </div>
+
+                <p className="text-xs sm:text-sm font-light text-[#6E665E] leading-relaxed">
+                  {service.description}
+                </p>
+              </div>
+            ))}
+          </div>
+        </>
+      ) : activeTemplate === '1' ? (
         <>
           <SectionTitle title={d.priceList} icon={Star} t={t} activeTemplate={activeTemplate} />
           <div className="flex items-center justify-center gap-3 sm:gap-6 border-b border-[#E7DFD5]/60 pb-3 mb-6 overflow-x-auto scrollbar-hide">

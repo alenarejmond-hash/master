@@ -15,7 +15,52 @@ export const SlotsSection = ({
 }) => {
   return (
     <section>
-      {activeTemplate === '1' ? (
+      {activeTemplate === '3' ? (
+        <>
+          <SectionTitle title={d.availableSlots} icon={Sparkles} t={t} activeTemplate={activeTemplate} />
+          {isLoadingDates ? (
+            <div className="w-full p-6 rounded-[26px] border border-[#ECE5DC] bg-white flex flex-col items-center gap-3 shadow-xs">
+              <div className="w-8 h-8 rounded-full border-3 border-[#5A6B5B] border-t-transparent animate-spin" />
+              <p className="text-xs font-medium text-[#7C746C] animate-pulse">{d.loadingSlots}</p>
+            </div>
+          ) : flattenedSlots.length === 0 ? (
+            <div className="w-full p-8 rounded-[28px] border border-[#ECE5DC] bg-white flex flex-col items-center justify-center text-center gap-3 shadow-xs">
+              <div className="w-12 h-12 rounded-full flex items-center justify-center bg-[#EEF2ED] text-[#5A6B5B]">
+                <Calendar size={22} />
+              </div>
+              <p className="text-sm font-medium leading-relaxed text-[#2E2A27]">
+                {vacationDays.length > 0 ? `${bannerText} ${d.slotsOpenLater}` : d.noSlots}
+              </p>
+            </div>
+          ) : (
+            <>
+              {showBanner && (
+                <div className="mb-4 p-3.5 rounded-2xl flex items-start gap-3 border bg-[#EEF2ED] text-[#4E614F] border-[#DCE4DB]">
+                  <Info size={18} className="flex-shrink-0 mt-0.5" />
+                  <p className="text-xs font-medium leading-snug">{bannerText}</p>
+                </div>
+              )}
+              {/* Горизонтальная карусель: видны дата и время, следующее окошко выглядывает сбоку */}
+              <div className="flex gap-3 overflow-x-auto pb-2 w-full scrollbar-hide">
+                {flattenedSlots.map(slot => (
+                  <div 
+                    key={slot.id}
+                    onClick={() => openBooking({ fullDate: slot.fullDate, displayDate: slot.displayDate, time: slot.time })}
+                    className="shrink-0 w-[140px] p-4 rounded-[24px] bg-white border border-[#ECE5DC] shadow-[0_6px_20px_-6px_rgba(180,160,140,0.18)] hover:shadow-[0_10px_28px_-6px_rgba(180,160,140,0.28)] hover:border-[#D5C8B8] transition-all cursor-pointer flex flex-col justify-center active:scale-95 group"
+                  >
+                    <span className="text-sm font-medium tracking-tight text-[#2E2A27] mb-0.5">
+                      {slot.displayDate}
+                    </span>
+                    <span className="text-xs font-medium tracking-wider text-[#5A6B5B]">
+                      {slot.time}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </>
+          )}
+        </>
+      ) : activeTemplate === '1' ? (
         <>
           <SectionTitle title={d.availableSlots} icon={Sparkles} t={t} activeTemplate={activeTemplate} />
           {isLoadingDates ? (

@@ -12,24 +12,24 @@ export const Footer = ({
   handleInstallPWA
 }) => {
   return (
-    <footer className={`mt-12 pt-10 pb-36 px-5 flex flex-col items-center w-full transition-colors duration-300 relative z-10 ${t.footerBg}`}>
+    <footer className={`mt-12 pt-10 pb-36 px-5 flex flex-col items-center w-full transition-colors duration-300 relative z-10 ${t.footerBg} ${activeTemplate === '3' ? 'rounded-t-[3rem]' : ''}`}>
       <div className="w-full max-w-xs space-y-3 mb-8">
-        <button onClick={() => setIsQrOpen(true)} className={`w-full py-3.5 ${activeTemplate === '2' ? 'rounded-none font-mono text-xs uppercase tracking-widest' : 'rounded-2xl font-sans text-xs uppercase tracking-wider font-medium'} flex items-center justify-center gap-3 transition-all duration-300 active:scale-95 ${t.btnSecondary}`}>
+        <button onClick={() => setIsQrOpen(true)} className={`w-full py-4 ${activeTemplate === '3' ? 'rounded-full font-medium text-xs tracking-wider uppercase' : (activeTemplate === '2' ? 'rounded-none font-mono text-xs uppercase tracking-widest' : 'rounded-2xl font-sans text-xs uppercase tracking-wider font-medium')} flex items-center justify-center gap-3 transition-all duration-300 active:scale-95 ${t.btnSecondary}`}>
           <QrCode size={18} />
           {d.showQr}
         </button>
-        <button onClick={handleDownloadVCard} className={`w-full py-3.5 ${activeTemplate === '2' ? 'rounded-none font-mono text-xs uppercase tracking-widest' : 'rounded-2xl font-sans text-xs uppercase tracking-wider font-medium'} flex items-center justify-center gap-3 transition-all duration-300 active:scale-95 ${t.btnSecondary}`}>
+        <button onClick={handleDownloadVCard} className={`w-full py-4 ${activeTemplate === '3' ? 'rounded-full font-medium text-xs tracking-wider uppercase' : (activeTemplate === '2' ? 'rounded-none font-mono text-xs uppercase tracking-widest' : 'rounded-2xl font-sans text-xs uppercase tracking-wider font-medium')} flex items-center justify-center gap-3 transition-all duration-300 active:scale-95 ${t.btnSecondary}`}>
           <UserPlus size={18} />
           {d.addToContacts}
         </button>
-        <button onClick={handleInstallPWA} className={`w-full py-3.5 ${activeTemplate === '2' ? 'rounded-none font-mono text-xs uppercase tracking-widest' : 'rounded-2xl font-sans text-xs uppercase tracking-wider font-medium'} flex items-center justify-center gap-3 transition-all duration-300 active:scale-95 ${t.btnSecondary} border-2 ${t.inputBorder.replace('focus-within:', '')}`}>
+        <button onClick={handleInstallPWA} className={`w-full py-4 ${activeTemplate === '3' ? 'rounded-full font-medium text-xs tracking-wider uppercase' : (activeTemplate === '2' ? 'rounded-none font-mono text-xs uppercase tracking-widest' : 'rounded-2xl font-sans text-xs uppercase tracking-wider font-medium')} flex items-center justify-center gap-3 transition-all duration-300 active:scale-95 ${t.btnSecondary} border-2 ${t.inputBorder.replace('focus-within:', '')}`}>
           <Smartphone size={18} />
           {d.installApp}
         </button>
       </div>
 
       <h3 
-        className={`${activeTemplate === '2' ? 'text-xs uppercase tracking-[0.25em] font-mono text-[#1E1C1A] font-semibold' : 'text-2xl font-normal tracking-wide'} mb-6 transition-colors duration-300 ${t.appTextMain}`}
+        className={`${activeTemplate === '2' ? 'text-xs uppercase tracking-[0.25em] font-mono text-[#1E1C1A] font-semibold' : (activeTemplate === '3' ? 'text-xl sm:text-2xl font-normal tracking-tight' : 'text-2xl font-normal tracking-wide')} mb-6 transition-colors duration-300 ${t.appTextMain}`}
         style={activeTemplate === '1' ? { fontFamily: 'Didot, "Bodoni MT", "Cormorant Garamond", Georgia, serif' } : {}}
       >
         {d.contactMe}

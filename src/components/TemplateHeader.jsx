@@ -3,32 +3,64 @@ import React from 'react';
 export const TemplateHeader = ({ activeTemplate, switchTemplate, lang, handleLanguageChange }) => {
   return (
     <>
-      {/* Шапка переключения шаблонов дизайна (Концепт 1 / Концепт 2) */}
+      {/* Шапка переключения шаблонов дизайна (Концепт 1 / Концепт 2 / Концепт 3) */}
       <div className="w-full bg-[#1E1C1A] text-[#FAF8F5] py-2.5 px-4 flex items-center justify-between text-xs border-b border-white/10 z-[100] sticky top-0 backdrop-blur-md shadow-md">
         <div className="flex items-center gap-2">
           <span className="opacity-50 text-[10px] uppercase font-mono tracking-wider">Шаблон:</span>
           <span className="font-semibold text-[11px] text-[#C5A059] tracking-wide">
-            {activeTemplate === '1' ? '1. Vogue Cover' : '2. The Row'}
+            {activeTemplate === '1' ? '1. Vogue Cover' : (activeTemplate === '2' ? '2. The Row' : '3. Clean Girl')}
           </span>
         </div>
         <div className="flex items-center gap-1 bg-white/10 p-0.5 rounded-full">
           <button 
             onClick={() => switchTemplate('1')}
-            className={`px-3 py-1 rounded-full text-[10px] font-mono tracking-wider uppercase transition-all duration-300 ${activeTemplate === '1' ? 'bg-[#C5A059] text-white font-bold shadow-sm' : 'text-white/70 hover:text-white'}`}
+            className={`px-2.5 py-1 rounded-full text-[10px] font-mono tracking-wider uppercase transition-all duration-300 ${activeTemplate === '1' ? 'bg-[#C5A059] text-white font-bold shadow-sm' : 'text-white/70 hover:text-white'}`}
           >
             1. Vogue
           </button>
           <button 
             onClick={() => switchTemplate('2')}
-            className={`px-3 py-1 rounded-full text-[10px] font-mono tracking-wider uppercase transition-all duration-300 ${activeTemplate === '2' ? 'bg-white text-[#1E1C1A] font-bold shadow-sm' : 'text-white/70 hover:text-white'}`}
+            className={`px-2.5 py-1 rounded-full text-[10px] font-mono tracking-wider uppercase transition-all duration-300 ${activeTemplate === '2' ? 'bg-white text-[#1E1C1A] font-bold shadow-sm' : 'text-white/70 hover:text-white'}`}
           >
             2. The Row
+          </button>
+          <button 
+            onClick={() => switchTemplate('3')}
+            className={`px-2.5 py-1 rounded-full text-[10px] font-mono tracking-wider uppercase transition-all duration-300 ${activeTemplate === '3' ? 'bg-[#5A6B5B] text-white font-bold shadow-sm' : 'text-white/70 hover:text-white'}`}
+          >
+            3. Clean Girl
           </button>
         </div>
       </div>
 
       {/* Top Bar: Minimal Language Switcher */}
-      {activeTemplate === '1' ? (
+      {activeTemplate === '3' ? (
+        <div 
+          className="w-full max-w-md mx-auto px-5 pt-3 pb-1 flex items-center justify-end relative z-30"
+          style={{ paddingTop: 'calc(1rem + env(safe-area-inset-top))' }}
+        >
+          <div className="flex items-center gap-1 p-1 rounded-full bg-white/80 border border-[#ECE5DC] shadow-xs backdrop-blur-md">
+            <button 
+              onClick={() => handleLanguageChange('hy')} 
+              className={`px-3 py-1 rounded-full text-[11px] font-medium tracking-wider uppercase transition-all duration-200 ${lang === 'hy' ? 'bg-[#38322E] text-[#FAF8F5] shadow-xs' : 'text-[#7C746C] hover:text-[#2E2A27]'}`}
+            >
+              HY
+            </button>
+            <button 
+              onClick={() => handleLanguageChange('ru')} 
+              className={`px-3 py-1 rounded-full text-[11px] font-medium tracking-wider uppercase transition-all duration-200 ${lang === 'ru' ? 'bg-[#38322E] text-[#FAF8F5] shadow-xs' : 'text-[#7C746C] hover:text-[#2E2A27]'}`}
+            >
+              RU
+            </button>
+            <button 
+              onClick={() => handleLanguageChange('en')} 
+              className={`px-3 py-1 rounded-full text-[11px] font-medium tracking-wider uppercase transition-all duration-200 ${lang === 'en' ? 'bg-[#38322E] text-[#FAF8F5] shadow-xs' : 'text-[#7C746C] hover:text-[#2E2A27]'}`}
+            >
+              EN
+            </button>
+          </div>
+        </div>
+      ) : activeTemplate === '1' ? (
         <div 
           className="w-full max-w-md mx-auto px-5 pt-3 pb-1 flex items-center justify-end relative z-30"
         >

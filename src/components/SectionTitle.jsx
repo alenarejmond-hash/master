@@ -1,6 +1,21 @@
 import React from 'react';
 
 export const SectionTitle = ({ title, icon: Icon, t, activeTemplate }) => {
+  if (activeTemplate === '3') {
+    return (
+      <div className="flex items-center gap-2.5 mb-4 px-1">
+        {Icon && (
+          <div className="w-7 h-7 rounded-full bg-[#EEF2ED] text-[#5A6B5B] flex items-center justify-center shrink-0">
+            <Icon size={14} />
+          </div>
+        )}
+        <h2 className="text-xl sm:text-2xl font-normal tracking-tight text-[#2E2A27]">
+          {title}
+        </h2>
+      </div>
+    );
+  }
+
   if (activeTemplate === '2') {
     return (
       <div className="flex items-center justify-between mb-4 border-b border-[#1E1C1A]/15 pb-2">

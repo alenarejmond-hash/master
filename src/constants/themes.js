@@ -26,12 +26,28 @@ export const THEMES_V2 = {
   cardShadow: "shadow-[0_2px_15px_-4px_rgba(30,28,26,0.05)]", pillBg: "bg-[#EAE4D9]", skeletonBg: "bg-black/5",
 };
 
+export const THEMES_V3 = {
+  appBg: "bg-[#FAF7F2]", appTextMain: "text-[#2E2A27]", appTextSub: "text-[#7C746C]", headerBg: "bg-transparent",
+  avatarBorder: "border-white", glow: "bg-[#7A8B7B]/10", cardBg: "bg-[#FFFFFF]", cardBorder: "border-[#ECE5DC]",
+  cardTextMain: "text-[#2E2A27]", cardTextSub: "text-[#7C746C]", btnPrimary: "bg-[#38322E] text-[#FAF8F5] shadow-[#38322E]/25",
+  accentText: "text-[#5A6B5B]", accentBg: "bg-[#EEF2ED]", badgeBg: "bg-[#F5EFE9]", badgeText: "text-[#5A6B5B]",
+  statusBadgeBg: "bg-[#EEF2ED]", statusBadgeText: "text-[#4E614F]", tabActive: "bg-[#38322E] text-white",
+  tabInactive: "bg-white text-[#7C746C] border-[#ECE5DC]", btnSecondary: "bg-white text-[#2E2A27] border-[#ECE5DC] hover:bg-[#F9F6F0]",
+  iconWrapper: "bg-[#F5EFE9] text-[#5A6B5B]", policyBg: "bg-white", bullet: "bg-[#5A6B5B]", footerBg: "bg-[#F5F1EB]",
+  footerBorder: "border-[#ECE5DC]", modalBg: "bg-[#FAF7F2]", grabber: "bg-[#E3D9CD]", inputBg: "bg-white focus-within:bg-white",
+  inputBorder: "border-[#ECE5DC] focus-within:border-[#5A6B5B]", inputFocusRing: "focus-within:ring-[#5A6B5B]/25",
+  inputText: "text-[#2E2A27]", successIcon: "text-[#5A6B5B]", successBg: "bg-[#EEF2ED]", statusDotBg: "bg-[#5A6B5B]",
+  cardShadow: "shadow-[0_10px_30px_-8px_rgba(180,160,140,0.18)]", pillBg: "bg-black/5", skeletonBg: "bg-black/5",
+};
+
 export const THEMES = {
   obsidian: THEMES_V1,
-  carbon: THEMES_V2
+  carbon: THEMES_V2,
+  clean: THEMES_V3
 };
 
 export const THEME_OPTIONS = [
   { id: 'obsidian', color: '#FAF7F2', border: '#C5A059' },
-  { id: 'carbon', color: '#F5F2EB', border: '#1E1C1A' }
+  { id: 'carbon', color: '#F5F2EB', border: '#1E1C1A' },
+  { id: 'clean', color: '#FAF7F2', border: '#5A6B5B' }
 ];

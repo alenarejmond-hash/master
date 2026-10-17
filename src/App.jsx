@@ -63,6 +63,7 @@ const formatPhone = (val) => {
 const DICT = {
   hy: {
     spec: "Մատնահարդար և Էսթետիկայի Վարպետ",
+    city: "Էջմիածին",
     location: "Էջմիածին, Մաշտոցի փող., 48",
     status: "Ընդունումը գրանցումով",
     bookOnline: "Գրանցվել առցանց",
@@ -120,6 +121,7 @@ const DICT = {
   },
   ru: {
     spec: "Nail & Aesthetic Master",
+    city: "г. Эчмиадзин",
     location: "г. Эчмиадзин, ул. Маштоца, 48",
     status: "Прием по записи",
     bookOnline: "Записаться онлайн",
@@ -177,6 +179,7 @@ const DICT = {
   },
   en: {
     spec: "Nail & Aesthetic Master",
+    city: "Echmiadzin",
     location: "Echmiadzin, Mashtots st., 48",
     status: "By appointment",
     bookOnline: "Book Online",
@@ -238,6 +241,7 @@ const getMockData = (lang) => ({
   master: {
     name: lang === 'hy' ? "Անի Սարգսյան" : (lang === 'en' ? "Ani Sargsyan" : "Ани Саркисян"),
     specialization: DICT[lang].spec,
+    city: DICT[lang].city,
     location: DICT[lang].location,
     mapUrl: "https://www.google.com/maps/search/?api=1&query=Эчмиадзин+Маштоца+48",
     avatar: "https://images.unsplash.com/photo-1522337660859-02fbefca4702?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=400&q=80",
@@ -306,94 +310,42 @@ const getMockData = (lang) => ({
   ]
 });
 
+const THEMES_V1 = {
+  appBg: "bg-[#FAF7F2]", appTextMain: "text-[#2B231F]", appTextSub: "text-[#6E6359]", headerBg: "bg-transparent",
+  avatarBorder: "border-[#EADBCE]", glow: "bg-[#C5A059]/10", cardBg: "bg-[#FFFFFF]", cardBorder: "border-[#EADBCE]/80",
+  cardTextMain: "text-[#2B231F]", cardTextSub: "text-[#6E6359]", btnPrimary: "bg-[#2C2420] text-[#FAF8F5] shadow-[#2C2420]/20",
+  accentText: "text-[#9E7A3E]", accentBg: "bg-[#C5A059]/10", badgeBg: "bg-[#F0EAE1]", badgeText: "text-[#2B231F]",
+  statusBadgeBg: "bg-[#C5A059]/15", statusBadgeText: "text-[#9E7A3E]", tabActive: "bg-[#2C2420] text-[#FAF8F5]",
+  tabInactive: "bg-[#FFFFFF] text-[#6E6359] border-[#EADBCE]/80", btnSecondary: "bg-[#FAF7F2] text-[#2B231F] hover:bg-[#F0EAE1]",
+  iconWrapper: "bg-[#F0EAE1] text-[#9E7A3E]", policyBg: "bg-[#FFFFFF]", bullet: "bg-[#C5A059]", footerBg: "bg-[#FAF7F2]",
+  footerBorder: "border-[#EADBCE]/80", modalBg: "bg-[#FAF7F2]", grabber: "bg-[#EADBCE]", inputBg: "bg-[#FFFFFF] focus-within:bg-[#FAF7F2]",
+  inputBorder: "border-[#EADBCE] focus-within:border-[#C5A059]", inputFocusRing: "focus-within:ring-[#C5A059]/30",
+  inputText: "text-[#2B231F]", successIcon: "text-[#C5A059]", successBg: "bg-[#C5A059]/15", statusDotBg: "bg-emerald-500",
+  cardShadow: "shadow-[0_4px_24px_-8px_rgba(44,36,32,0.06)]", pillBg: "bg-black/5", skeletonBg: "bg-black/5",
+};
+
+const THEMES_V2 = {
+  appBg: "bg-[#F5F2EB]", appTextMain: "text-[#1E1C1A]", appTextSub: "text-[#6B635B]", headerBg: "bg-transparent",
+  avatarBorder: "border-[#E2DDD3]", glow: "bg-[#E2DDD3]/40", cardBg: "bg-[#FCFAF7]", cardBorder: "border-[#E5DFD5]",
+  cardTextMain: "text-[#1E1C1A]", cardTextSub: "text-[#6B635B]", btnPrimary: "bg-[#1E1C1A] text-[#FAF8F5] shadow-[#1E1C1A]/15",
+  accentText: "text-[#1E1C1A]", accentBg: "bg-[#EAE4D9]", badgeBg: "bg-[#EAE4D9]", badgeText: "text-[#1E1C1A]",
+  statusBadgeBg: "bg-[#EAE4D9]", statusBadgeText: "text-[#1E1C1A]", tabActive: "bg-[#1E1C1A] text-[#FAF8F5]",
+  tabInactive: "bg-[#FCFAF7] text-[#6B635B] border-[#E5DFD5]", btnSecondary: "bg-[#F5F2EB] text-[#1E1C1A] hover:bg-[#EAE4D9]",
+  iconWrapper: "bg-[#EAE4D9] text-[#1E1C1A]", policyBg: "bg-[#FCFAF7]", bullet: "bg-[#1E1C1A]", footerBg: "bg-[#F5F2EB]",
+  footerBorder: "border-[#E5DFD5]", modalBg: "bg-[#F5F2EB]", grabber: "bg-[#D8D0C5]", inputBg: "bg-[#FCFAF7] focus-within:bg-[#F5F2EB]",
+  inputBorder: "border-[#E5DFD5] focus-within:border-[#1E1C1A]", inputFocusRing: "focus-within:ring-[#1E1C1A]/20",
+  inputText: "text-[#1E1C1A]", successIcon: "text-emerald-700", successBg: "bg-emerald-50", statusDotBg: "bg-emerald-600",
+  cardShadow: "shadow-[0_2px_15px_-4px_rgba(30,28,26,0.05)]", pillBg: "bg-[#EAE4D9]", skeletonBg: "bg-black/5",
+};
+
 const THEMES = {
-  obsidian: {
-    appBg: "bg-[#0F0F11]", appTextMain: "text-[#F4E8C1]", appTextSub: "text-[#F4E8C1]/60", headerBg: "bg-[#18181C]",
-    avatarBorder: "border-[#18181C]", glow: "bg-[#D4AF37]/15", cardBg: "bg-[#18181C]", cardBorder: "border-[#2A2A30]",
-    cardTextMain: "text-[#F4E8C1]", cardTextSub: "text-[#F4E8C1]/50", btnPrimary: "bg-[#D4AF37] text-black font-semibold shadow-[#D4AF37]/10",
-    accentText: "text-[#D4AF37]", accentBg: "bg-[#D4AF37]/10", badgeBg: "bg-[#2A2A30]", badgeText: "text-[#F4E8C1]",
-    statusBadgeBg: "bg-[#D4AF37]/10", statusBadgeText: "text-[#D4AF37]", tabActive: "bg-[#D4AF37] text-black",
-    tabInactive: "bg-[#18181C] text-[#F4E8C1]/60 border-[#2A2A30]", btnSecondary: "bg-[#2A2A30] text-[#F4E8C1] hover:bg-[#3A3A40]",
-    iconWrapper: "bg-[#2A2A30] text-[#D4AF37]", policyBg: "bg-[#18181C]", bullet: "bg-[#D4AF37]", footerBg: "bg-[#18181C]",
-    footerBorder: "border-[#2A2A30]", modalBg: "bg-[#18181C]", grabber: "bg-[#2A2A30]", inputBg: "bg-[#0F0F11] focus-within:bg-[#18181C]",
-    inputBorder: "border-transparent focus-within:border-[#D4AF37]", inputFocusRing: "focus-within:ring-[#D4AF37]/30",
-    inputText: "text-[#F4E8C1]", successIcon: "text-emerald-400", successBg: "bg-emerald-400/10", statusDotBg: "bg-emerald-400",
-    cardShadow: "shadow-[0_4px_20px_-8px_rgba(0,0,0,0.4)]", pillBg: "bg-white/5", skeletonBg: "bg-white/5",
-  },
-  emerald: {
-    appBg: "bg-[#0B1D17]", appTextMain: "text-[#F1F5F9]", appTextSub: "text-[#F1F5F9]/60", headerBg: "bg-[#132E25]",
-    avatarBorder: "border-[#132E25]", glow: "bg-[#5EEAD4]/10", cardBg: "bg-[#132E25]", cardBorder: "border-[#1F4538]",
-    cardTextMain: "text-[#F1F5F9]", cardTextSub: "text-[#F1F5F9]/50", btnPrimary: "bg-[#5EEAD4] text-[#0B1D17] font-semibold shadow-[#5EEAD4]/10",
-    accentText: "text-[#5EEAD4]", accentBg: "bg-[#5EEAD4]/10", badgeBg: "bg-[#1F4538]", badgeText: "text-[#F1F5F9]",
-    statusBadgeBg: "bg-[#5EEAD4]/10", statusBadgeText: "text-[#5EEAD4]", tabActive: "bg-[#5EEAD4] text-[#0B1D17]",
-    tabInactive: "bg-[#132E25] text-[#F1F5F9]/60 border-[#1F4538]", btnSecondary: "bg-[#1F4538] text-[#F1F5F9] hover:bg-[#2A5A4A]",
-    iconWrapper: "bg-[#1F4538] text-[#5EEAD4]", policyBg: "bg-[#132E25]", bullet: "bg-[#5EEAD4]", footerBg: "bg-[#132E25]",
-    footerBorder: "border-[#1F4538]", modalBg: "bg-[#132E25]", grabber: "bg-[#1F4538]", inputBg: "bg-[#0B1D17] focus-within:bg-[#132E25]",
-    inputBorder: "border-transparent focus-within:border-[#5EEAD4]", inputFocusRing: "focus-within:ring-[#5EEAD4]/30",
-    inputText: "text-[#F1F5F9]", successIcon: "text-[#5EEAD4]", successBg: "bg-[#5EEAD4]/10", statusDotBg: "bg-[#5EEAD4]",
-    cardShadow: "shadow-[0_4px_20px_-8px_rgba(0,0,0,0.3)]", pillBg: "bg-white/5", skeletonBg: "bg-white/5",
-  },
-  rose: {
-    appBg: "bg-[#FCF7F8]", appTextMain: "text-[#5C3A41]", appTextSub: "text-[#5C3A41]/70", headerBg: "bg-white",
-    avatarBorder: "border-white", glow: "bg-[#F2A4B3]/20", cardBg: "bg-white", cardBorder: "border-[#F7DADD]",
-    cardTextMain: "text-[#5C3A41]", cardTextSub: "text-[#5C3A41]/60", btnPrimary: "bg-[#F2A4B3] text-white font-semibold shadow-[#F2A4B3]/30",
-    accentText: "text-[#E07A8F]", accentBg: "bg-[#F2A4B3]/15", badgeBg: "bg-[#F2A4B3]/10", badgeText: "text-[#E07A8F]",
-    statusBadgeBg: "bg-[#F2A4B3]/15", statusBadgeText: "text-[#E07A8F]", tabActive: "bg-[#5C3A41] text-white",
-    tabInactive: "bg-white text-[#5C3A41]/70 border-[#F7DADD]", btnSecondary: "bg-[#FCF7F8] text-[#5C3A41] hover:bg-[#F7EAEB]",
-    iconWrapper: "bg-[#FCF7F8] text-[#E07A8F]", policyBg: "bg-[#F2A4B3]/5", bullet: "bg-[#E07A8F]", footerBg: "bg-white",
-    footerBorder: "border-[#F7DADD]", modalBg: "bg-white", grabber: "bg-[#F7DADD]", inputBg: "bg-[#FCF7F8] focus-within:bg-white",
-    inputBorder: "border-transparent focus-within:border-[#F2A4B3]", inputFocusRing: "focus-within:ring-[#F2A4B3]/30",
-    inputText: "text-[#5C3A41]", successIcon: "text-[#E07A8F]", successBg: "bg-[#F2A4B3]/20", statusDotBg: "bg-[#E07A8F]",
-    cardShadow: "shadow-[0_4px_20px_-8px_rgba(242,164,179,0.15)]", pillBg: "bg-[#F2A4B3]/15", skeletonBg: "bg-[#F7DADD]/50",
-  },
-  lavender: {
-    appBg: "bg-[#F9F9FE]", appTextMain: "text-[#3D3B4A]", appTextSub: "text-[#3D3B4A]/70", headerBg: "bg-white",
-    avatarBorder: "border-white", glow: "bg-[#B3A4F2]/20", cardBg: "bg-white", cardBorder: "border-[#E4DDF7]",
-    cardTextMain: "text-[#3D3B4A]", cardTextSub: "text-[#3D3B4A]/60", btnPrimary: "bg-[#B3A4F2] text-white font-semibold shadow-[#B3A4F2]/30",
-    accentText: "text-[#8E79DF]", accentBg: "bg-[#B3A4F2]/15", badgeBg: "bg-[#B3A4F2]/10", badgeText: "text-[#8E79DF]",
-    statusBadgeBg: "bg-[#B3A4F2]/15", statusBadgeText: "text-[#8E79DF]", tabActive: "bg-[#3D3B4A] text-white",
-    tabInactive: "bg-white text-[#3D3B4A]/70 border-[#E4DDF7]", btnSecondary: "bg-[#F9F9FE] text-[#3D3B4A] hover:bg-[#EBEAF5]",
-    iconWrapper: "bg-[#F9F9FE] text-[#8E79DF]", policyBg: "bg-[#B3A4F2]/5", bullet: "bg-[#8E79DF]", footerBg: "bg-white",
-    footerBorder: "border-[#E4DDF7]", modalBg: "bg-white", grabber: "bg-[#E4DDF7]", inputBg: "bg-[#F9F9FE] focus-within:bg-white",
-    inputBorder: "border-transparent focus-within:border-[#B3A4F2]", inputFocusRing: "focus-within:ring-[#B3A4F2]/30",
-    inputText: "text-[#3D3B4A]", successIcon: "text-[#8E79DF]", successBg: "bg-[#B3A4F2]/20", statusDotBg: "bg-[#8E79DF]",
-    cardShadow: "shadow-[0_4px_20px_-8px_rgba(179,164,242,0.15)]", pillBg: "bg-[#B3A4F2]/15", skeletonBg: "bg-[#E4DDF7]/50",
-  },
-  carbon: {
-    appBg: "bg-[#111111]", appTextMain: "text-[#EAEAEA]", appTextSub: "text-[#A0A0A0]", headerBg: "bg-[#1A1A1A]",
-    avatarBorder: "border-[#1A1A1A]", glow: "bg-[#FFFFFF]/5", cardBg: "bg-[#1A1A1A]", cardBorder: "border-[#2A2A2A]",
-    cardTextMain: "text-[#EAEAEA]", cardTextSub: "text-[#A0A0A0]", btnPrimary: "bg-white text-black font-semibold shadow-white/10",
-    accentText: "text-white", accentBg: "bg-white/10", badgeBg: "bg-[#2A2A2A]", badgeText: "text-[#EAEAEA]",
-    statusBadgeBg: "bg-white/10", statusBadgeText: "text-white", tabActive: "bg-white text-black",
-    tabInactive: "bg-[#1A1A1A] text-[#A0A0A0] border-[#2A2A2A]", btnSecondary: "bg-[#2A2A2A] text-[#EAEAEA] hover:bg-[#333333]",
-    iconWrapper: "bg-[#2A2A2A] text-white", policyBg: "bg-[#1A1A1A]", bullet: "bg-white", footerBg: "bg-[#1A1A1A]",
-    footerBorder: "border-[#2A2A2A]", modalBg: "bg-[#1A1A1A]", grabber: "bg-[#2A2A2A]", inputBg: "bg-[#111111] focus-within:bg-[#1A1A1A]",
-    inputBorder: "border-transparent focus-within:border-white/50", inputFocusRing: "focus-within:ring-white/20",
-    inputText: "text-[#EAEAEA]", successIcon: "text-white", successBg: "bg-white/20", statusDotBg: "bg-white",
-    cardShadow: "shadow-[0_4px_20px_-8px_rgba(0,0,0,0.5)]", pillBg: "bg-white/10", skeletonBg: "bg-white/5",
-  },
-  cognac: {
-    appBg: "bg-[#140D0B]", appTextMain: "text-[#F3E6D9]", appTextSub: "text-[#F3E6D9]/60", headerBg: "bg-[#1C1310]",
-    avatarBorder: "border-[#1C1310]", glow: "bg-[#D97736]/15", cardBg: "bg-[#1C1310]", cardBorder: "border-[#2D1F1A]",
-    cardTextMain: "text-[#F3E6D9]", cardTextSub: "text-[#F3E6D9]/50", btnPrimary: "bg-[#D97736] text-white font-semibold shadow-[#D97736]/20",
-    accentText: "text-[#D97736]", accentBg: "bg-[#D97736]/10", badgeBg: "bg-[#2D1F1A]", badgeText: "text-[#F3E6D9]",
-    statusBadgeBg: "bg-[#D97736]/10", statusBadgeText: "text-[#D97736]", tabActive: "bg-[#D97736] text-white",
-    tabInactive: "bg-[#1C1310] text-[#F3E6D9]/60 border-[#2D1F1A]", btnSecondary: "bg-[#2D1F1A] text-[#F3E6D9] hover:bg-[#3A2822]",
-    iconWrapper: "bg-[#2D1F1A] text-[#D97736]", policyBg: "bg-[#1C1310]", bullet: "bg-[#D97736]", footerBg: "bg-[#1C1310]",
-    footerBorder: "border-[#2D1F1A]", modalBg: "bg-[#1C1310]", grabber: "bg-[#2D1F1A]", inputBg: "bg-[#140D0B] focus-within:bg-[#1C1310]",
-    inputBorder: "border-transparent focus-within:border-[#D97736]", inputFocusRing: "focus-within:ring-[#D97736]/30",
-    inputText: "text-[#F3E6D9]", successIcon: "text-[#D97736]", successBg: "bg-[#D97736]/15", statusDotBg: "bg-[#D97736]",
-    cardShadow: "shadow-[0_4px_20px_-8px_rgba(0,0,0,0.5)]", pillBg: "bg-white/5", skeletonBg: "bg-white/5",
-  }
+  obsidian: THEMES_V1,
+  carbon: THEMES_V2
 };
 
 const THEME_OPTIONS = [
-  { id: 'obsidian', color: '#0F0F11', border: '#D4AF37' },
-  { id: 'carbon', color: '#111111', border: '#FFFFFF' },
-  { id: 'cognac', color: '#140D0B', border: '#D97736' },
-  { id: 'emerald', color: '#0B1D17', border: '#5EEAD4' },
-  { id: 'rose', color: '#FCF7F8', border: '#F2A4B3' },
-  { id: 'lavender', color: '#F9F9FE', border: '#B3A4F2' }
+  { id: 'obsidian', color: '#FAF7F2', border: '#C5A059' },
+  { id: 'carbon', color: '#F5F2EB', border: '#1E1C1A' }
 ];
 
 const Toast = ({ message, isVisible, isError = false }) => (
@@ -437,10 +389,55 @@ const parseSheetDate = (dateStr, lang) => {
   return { shortDate, label, fullDate: dateStr };
 };
 
+const detectPhoneLanguage = () => {
+  if (typeof window === 'undefined') return 'ru';
+  const saved = localStorage.getItem('app-lang');
+  if (saved && ['hy', 'ru', 'en'].includes(saved)) {
+    return saved;
+  }
+  const userLangs = (typeof navigator !== 'undefined' && (navigator.languages || [navigator.language])) || [];
+  for (const l of userLangs) {
+    if (!l) continue;
+    const code = l.toLowerCase();
+    if (code.startsWith('hy')) return 'hy';
+    if (code.startsWith('ru') || code.startsWith('be') || code.startsWith('uk')) return 'ru';
+    if (code.startsWith('en')) return 'en';
+  }
+  return 'ru';
+};
+
 export default function App() {
-  const [lang, setLang] = useState('ru'); 
+  const [lang, setLang] = useState(detectPhoneLanguage); 
   const d = DICT[lang]; 
   const data = getMockData(lang); 
+
+  const handleLanguageChange = (newLang) => {
+    setLang(newLang);
+    localStorage.setItem('app-lang', newLang);
+  };
+
+  const [activeTemplate, setActiveTemplate] = useState(() => {
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search);
+      const v = params.get('v');
+      if (v === '1' || v === '2') return v;
+      const saved = localStorage.getItem('app-beauty-template');
+      if (saved === '1' || saved === '2') return saved;
+    }
+    return '1';
+  });
+
+  const switchTemplate = (tpl) => {
+    setActiveTemplate(tpl);
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('app-beauty-template', tpl);
+      const url = new URL(window.location);
+      url.searchParams.set('v', tpl);
+      window.history.replaceState({}, '', url);
+    }
+  };
+
+  const [expandedServiceId, setExpandedServiceId] = useState(null);
 
   const [rawDates, setRawDates] = useState([]);
   const [availableDates, setAvailableDates] = useState([]);
@@ -486,7 +483,7 @@ export default function App() {
     localStorage.setItem('app-theme', theme);
   }, [theme]);
 
-  const t = THEMES[theme] || THEMES['obsidian'];
+  const t = activeTemplate === '2' ? THEMES_V2 : THEMES_V1;
 
   useEffect(() => {
     const bgTopColor = t.appBg.replace('bg-[', '').replace(']', '');
@@ -536,6 +533,15 @@ export default function App() {
       setAvailableDates([]);
     }
   }, [rawDates, lang]);
+
+  const flattenedSlots = availableDates.flatMap(day => 
+    (day.times || []).map((time, tIdx) => ({
+      id: `${day.id}-${tIdx}`,
+      fullDate: day.fullDate,
+      displayDate: day.shortDate,
+      time: time
+    }))
+  );
 
   useEffect(() => {
     const close = () => setOpenDropdown(null);
@@ -598,10 +604,10 @@ export default function App() {
     URL.revokeObjectURL(url);
   };
 
-  const openBooking = () => {
+  const openBooking = (customSlot = null) => {
     const defaultService = data.services[0];
-    let defaultSlot = null;
-    if (availableDates.length > 0) {
+    let defaultSlot = (customSlot && customSlot.fullDate) ? customSlot : null;
+    if (!defaultSlot && availableDates.length > 0) {
       defaultSlot = { fullDate: availableDates[0].fullDate, displayDate: availableDates[0].shortDate, time: availableDates[0].times[0] };
     }
     setBookingModal({ isOpen: true, services: [defaultService], slot: defaultSlot });
@@ -712,140 +718,441 @@ export default function App() {
     <div className={`app-wrapper font-sans selection:bg-rose-200 antialiased flex flex-col relative transition-colors duration-300 min-h-[100dvh] w-full overflow-x-hidden ${t.appBg} ${t.appTextMain}`}>
       <Toast message={toast.message} isVisible={toast.visible} isError={toast.isError} />
 
-      <div 
-        className={`absolute z-[80] flex items-center p-1 rounded-full backdrop-blur-md shadow-sm transition-colors duration-300 ${t.pillBg}`}
-        style={{ top: 'calc(1rem + env(safe-area-inset-top))', right: '1.25rem' }}
-      >
-        <button onClick={() => setLang('hy')} className={`px-3 py-1.5 text-[10px] sm:text-xs font-bold rounded-full transition-all duration-300 ${lang === 'hy' ? t.tabActive : 'text-current opacity-60 hover:opacity-100 bg-transparent'}`}>ՀԱՅ</button>
-        <button onClick={() => setLang('ru')} className={`px-3 py-1.5 text-[10px] sm:text-xs font-bold rounded-full transition-all duration-300 ${lang === 'ru' ? t.tabActive : 'text-current opacity-60 hover:opacity-100 bg-transparent'}`}>РУС</button>
-        <button onClick={() => setLang('en')} className={`px-3 py-1.5 text-[10px] sm:text-xs font-bold rounded-full transition-all duration-300 ${lang === 'en' ? t.tabActive : 'text-current opacity-60 hover:opacity-100 bg-transparent'}`}>ENG</button>
-      </div>
-
-      <header className={`relative pt-20 pb-8 px-5 overflow-hidden flex flex-col items-center text-center rounded-b-[2.5rem] shadow-[0_4px_40px_-15px_rgba(0,0,0,0.05)] w-full transition-colors duration-300 ${t.headerBg}`}>
-        <div className={`absolute top-0 left-1/2 -translate-x-1/2 w-[120%] h-48 rounded-[100%] blur-3xl -z-10 transition-colors duration-700 ${t.glow}`} />
-        
-        <div className="relative mb-5">
-          <div className={`absolute inset-0 rounded-full blur-md opacity-60 animate-pulse transition-colors duration-700 ${t.glow.replace('/20', '/80').replace('/15', '/80').replace('/10', '/80')}`} />
-          <img src={data.master.avatar} alt={data.master.name} className={`relative w-28 h-28 object-cover rounded-full border-4 shadow-lg object-top transition-colors duration-300 ${t.avatarBorder}`} />
-          <div className={`absolute -bottom-1 -right-1 p-1.5 rounded-full shadow-sm transition-colors duration-300 ${t.headerBg}`}>
-            <span className={`flex items-center justify-center w-5 h-5 rounded-full relative z-10 bg-emerald-500`}>
-              <span className={`w-2.5 h-2.5 rounded-full animate-ping absolute opacity-75 bg-emerald-300`} />
-              <span className={`w-1.5 h-1.5 rounded-full relative z-20 bg-white`} />
-            </span>
-          </div>
-        </div>
-
-        <h1 className="text-3xl font-extrabold tracking-tight mb-1">{data.master.name}</h1>
-        <p className={`font-medium mb-4 transition-colors duration-300 ${t.appTextSub}`}>{data.master.specialization}</p>
-
-        <div className="flex flex-wrap justify-center gap-2 mb-6">
-          <a href={data.master.mapUrl} target="_blank" rel="noopener noreferrer" className={`inline-flex items-center gap-1.5 px-4 py-2 text-sm font-bold rounded-full backdrop-blur-sm transition-all duration-300 active:scale-95 shadow-md border hover:scale-105 ${t.badgeBg} ${t.badgeText} border-current/20`}>
-            <MapPin size={16} />
-            {data.master.location}
-            <ExternalLink size={14} className="ml-0.5 opacity-60" />
-          </a>
-          <span className={`inline-flex items-center gap-1.5 px-4 py-2 text-sm font-bold rounded-full transition-colors duration-300 ${t.statusBadgeBg} ${t.statusBadgeText}`}>
-            {data.master.status}
+      {/* Шапка переключения шаблонов дизайна (Концепт 1 / Концепт 2) */}
+      <div className="w-full bg-[#1E1C1A] text-[#FAF8F5] py-2.5 px-4 flex items-center justify-between text-xs border-b border-white/10 z-[100] sticky top-0 backdrop-blur-md shadow-md">
+        <div className="flex items-center gap-2">
+          <span className="opacity-50 text-[10px] uppercase font-mono tracking-wider">Шаблон:</span>
+          <span className="font-semibold text-[11px] text-[#C5A059] tracking-wide">
+            {activeTemplate === '1' ? '1. Vogue Cover' : '2. The Row'}
           </span>
         </div>
+        <div className="flex items-center gap-1 bg-white/10 p-0.5 rounded-full">
+          <button 
+            onClick={() => switchTemplate('1')}
+            className={`px-3 py-1 rounded-full text-[10px] font-mono tracking-wider uppercase transition-all duration-300 ${activeTemplate === '1' ? 'bg-[#C5A059] text-white font-bold shadow-sm' : 'text-white/70 hover:text-white'}`}
+          >
+            1. Vogue
+          </button>
+          <button 
+            onClick={() => switchTemplate('2')}
+            className={`px-3 py-1 rounded-full text-[10px] font-mono tracking-wider uppercase transition-all duration-300 ${activeTemplate === '2' ? 'bg-white text-[#1E1C1A] font-bold shadow-sm' : 'text-white/70 hover:text-white'}`}
+          >
+            2. The Row
+          </button>
+        </div>
+      </div>
 
-        <button onClick={openBooking} className={`w-full max-w-xs py-4 px-6 rounded-[2rem] font-bold text-lg shadow-[0_8px_30px_-10px_rgba(0,0,0,0.3)] active:scale-95 transition-all duration-200 flex items-center justify-center gap-2 mx-auto ${t.btnPrimary}`}>
-          <Calendar size={20} />
-          {d.bookOnline}
-        </button>
-      </header>
+      {/* Top Bar: Location & Minimal Language Switcher */}
+      {activeTemplate === '1' ? (
+        <div 
+          className="w-full max-w-md mx-auto px-5 pt-3 pb-3 flex items-center justify-between relative z-30"
+        >
+          <a 
+            href={data.master.mapUrl} 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#EADBCE]/60 border border-[#D8C7B5] shadow-xs text-xs font-medium text-[#2B231F] whitespace-nowrap shrink-0 hover:border-[#C5A059] active:scale-95 transition-all"
+          >
+            <MapPin size={13} className="text-[#9E7A3E] shrink-0" />
+            <span className="tracking-wide">{data.master.city}</span>
+          </a>
 
-      <main className="px-5 mt-8 w-full max-w-md mx-auto space-y-10 flex-1 relative z-10">
-        
-        <section>
-          <SectionTitle title={d.availableSlots} icon={Sparkles} t={t} />
-          {isLoadingDates ? (
-            <div className={`w-full p-6 rounded-3xl border flex flex-col items-center gap-4 transition-colors duration-300 ${t.cardBg} ${t.cardBorder}`}>
-              <div className={`w-10 h-10 rounded-full animate-spin border-4 border-t-transparent ${t.accentText.replace('text-', 'border-')}`} style={{borderTopColor: 'transparent'}} />
-              <p className={`text-sm font-medium animate-pulse ${t.cardTextSub}`}>{d.loadingSlots}</p>
+          <div className="flex items-center gap-1.5 text-[11px] tracking-wider font-sans uppercase font-medium">
+            <button 
+              onClick={() => handleLanguageChange('hy')} 
+              className={`px-1.5 py-0.5 rounded transition-all duration-200 ${lang === 'hy' ? 'text-[#9E7A3E] font-bold border-b-2 border-[#C5A059]' : 'text-[#736A62] opacity-50 hover:opacity-100'}`}
+            >
+              HY
+            </button>
+            <span className="opacity-25 text-[#736A62]">/</span>
+            <button 
+              onClick={() => handleLanguageChange('ru')} 
+              className={`px-1.5 py-0.5 rounded transition-all duration-200 ${lang === 'ru' ? 'text-[#9E7A3E] font-bold border-b-2 border-[#C5A059]' : 'text-[#736A62] opacity-50 hover:opacity-100'}`}
+            >
+              RU
+            </button>
+            <span className="opacity-25 text-[#736A62]">/</span>
+            <button 
+              onClick={() => handleLanguageChange('en')} 
+              className={`px-1.5 py-0.5 rounded transition-all duration-200 ${lang === 'en' ? 'text-[#9E7A3E] font-bold border-b-2 border-[#C5A059]' : 'text-[#736A62] opacity-50 hover:opacity-100'}`}
+            >
+              EN
+            </button>
+          </div>
+        </div>
+      ) : (
+        <div 
+          className="w-full max-w-md mx-auto px-5 pt-3 pb-3 flex items-center justify-between relative z-30"
+        >
+          <a 
+            href={data.master.mapUrl} 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-none border border-[#1E1C1A]/20 bg-[#FCFAF7] text-xs font-mono uppercase tracking-wider text-[#1E1C1A] whitespace-nowrap shrink-0 hover:bg-[#1E1C1A] hover:text-white transition-all duration-300"
+          >
+            <MapPin size={12} className="shrink-0 text-[#1E1C1A]" />
+            <span>{data.master.city}</span>
+          </a>
+
+          <div className="flex items-center gap-2 text-[11px] font-mono tracking-widest uppercase font-medium text-[#1E1C1A]">
+            <button 
+              onClick={() => handleLanguageChange('hy')} 
+              className={`transition-all duration-200 ${lang === 'hy' ? 'font-bold border-b border-[#1E1C1A]' : 'opacity-40 hover:opacity-100'}`}
+            >
+              HY
+            </button>
+            <span className="opacity-25">/</span>
+            <button 
+              onClick={() => handleLanguageChange('ru')} 
+              className={`transition-all duration-200 ${lang === 'ru' ? 'font-bold border-b border-[#1E1C1A]' : 'opacity-40 hover:opacity-100'}`}
+            >
+              RU
+            </button>
+            <span className="opacity-25">/</span>
+            <button 
+              onClick={() => handleLanguageChange('en')} 
+              className={`transition-all duration-200 ${lang === 'en' ? 'font-bold border-b border-[#1E1C1A]' : 'opacity-40 hover:opacity-100'}`}
+            >
+              EN
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* Header: Vogue Editorial Cover vs Architectural Diptych */}
+      {activeTemplate === '1' ? (
+        <header className="px-5 w-full max-w-md mx-auto pt-2 pb-6 flex flex-col items-center">
+          <div className="w-full relative aspect-[4/5] rounded-[2rem] overflow-hidden shadow-[0_20px_50px_-15px_rgba(44,36,32,0.25)] group border border-[#E7DFD5]/70">
+            <img 
+              src={data.master.avatar} 
+              alt={data.master.name} 
+              className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105" 
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent pointer-events-none" />
+            <div className="absolute top-4 left-4 inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full backdrop-blur-md bg-black/40 border border-white/15 text-[10px] tracking-[0.2em] uppercase text-white/95 font-sans">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+              <span>{data.master.status}</span>
             </div>
-          ) : availableDates.length === 0 ? (
-            <div className={`w-full p-8 rounded-3xl border flex flex-col items-center justify-center text-center gap-4 transition-colors duration-300 ${t.cardBg} ${t.cardBorder} shadow-sm`}>
-              <div className={`w-14 h-14 rounded-full flex items-center justify-center ${t.accentBg} ${t.accentText}`}>
-                <Calendar size={28} />
-              </div>
-              <p className={`text-sm font-medium leading-relaxed ${t.cardTextMain}`}>
-                {vacationDays.length > 0 ? `${bannerText} ${d.slotsOpenLater}` : d.noSlots}
+            <div className="absolute bottom-6 left-6 right-6 text-left text-white z-10">
+              <p className="text-[10px] sm:text-xs uppercase tracking-[0.28em] font-sans text-[#EADBCE] font-light mb-1.5">
+                {data.master.specialization}
               </p>
+              <h1 
+                className="text-4xl sm:text-5xl font-normal tracking-wide text-[#FAF8F5] leading-[1.05]"
+                style={{ fontFamily: 'Didot, "Bodoni MT", "Cormorant Garamond", Georgia, serif' }}
+              >
+                {data.master.name}
+              </h1>
             </div>
+          </div>
+
+          <button 
+            onClick={openBooking} 
+            className="mt-5 w-full py-4 px-6 rounded-full font-sans text-xs tracking-[0.25em] uppercase font-medium shadow-[0_12px_35px_-10px_rgba(197,160,89,0.35)] active:scale-[0.98] transition-all duration-300 flex items-center justify-between bg-gradient-to-r from-[#2C2420] via-[#3A3029] to-[#2C2420] text-[#FAF8F5] border border-[#C5A059]/40 group"
+          >
+            <span className="pl-2">{d.bookOnline}</span>
+            <div className="w-8 h-8 rounded-full bg-[#C5A059] text-white flex items-center justify-center transition-transform duration-300 group-hover:rotate-12">
+              <Calendar size={15} />
+            </div>
+          </button>
+        </header>
+      ) : (
+        <header className="px-5 w-full max-w-md mx-auto pt-3 pb-8">
+          <div className="flex items-start justify-between gap-3 w-full">
+            <div className="w-[58%] aspect-[3/4.2] relative overflow-hidden bg-[#EAE4D9] border border-[#E5DFD5] shadow-xs group">
+              <img 
+                src={data.master.avatar} 
+                alt={data.master.name} 
+                className="w-full h-full object-cover object-top filter grayscale-[25%] contrast-[1.05] transition-transform duration-700 group-hover:scale-105" 
+              />
+              <div className="absolute top-3 left-3 text-[9px] font-mono tracking-widest uppercase bg-[#1E1C1A]/85 text-[#FAF8F5] px-2 py-0.5">
+                Portrait
+              </div>
+            </div>
+
+            <div className="w-[39%] aspect-[3/4] relative overflow-hidden bg-[#EAE4D9] border border-[#E5DFD5] shadow-xs mt-10 group">
+              <img 
+                src="https://images.unsplash.com/photo-1604654894610-df63bc536371?auto=format&fit=crop&w=600&q=80" 
+                alt="Aesthetic Macro" 
+                className="w-full h-full object-cover filter contrast-[1.05] transition-transform duration-700 group-hover:scale-105" 
+              />
+              <div className="absolute bottom-2.5 right-2.5 text-[9px] font-mono tracking-widest uppercase bg-[#1E1C1A]/85 text-[#FAF8F5] px-2 py-0.5">
+                Detail
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-7 text-left w-full border-b border-[#1E1C1A]/15 pb-5">
+            <div className="flex items-center justify-between mb-2">
+              <span className="text-[10px] tracking-[0.25em] uppercase font-mono text-[#6B635B]">
+                {data.master.specialization}
+              </span>
+              <span className="inline-flex items-center gap-1.5 text-[10px] font-mono tracking-widest uppercase text-[#1E1C1A]">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-600 animate-pulse" />
+                {data.master.status}
+              </span>
+            </div>
+            <h1 className="text-3xl sm:text-4xl font-light tracking-[0.06em] uppercase text-[#1E1C1A] leading-tight">
+              {data.master.name}
+            </h1>
+          </div>
+
+          <button 
+            onClick={openBooking} 
+            className="mt-5 w-full py-4 px-6 bg-[#1E1C1A] hover:bg-[#2F2B27] text-[#FAF8F5] text-xs uppercase tracking-[0.25em] font-medium transition-all duration-300 flex items-center justify-between group active:scale-[0.99]"
+          >
+            <span>{d.bookOnline}</span>
+            <span className="font-mono text-sm tracking-normal transition-transform duration-300 group-hover:translate-x-1">→</span>
+          </button>
+        </header>
+      )}
+
+      <main className="px-5 mt-6 w-full max-w-md mx-auto space-y-10 flex-1 relative z-10">
+        
+        {/* Свободные окна */}
+        <section>
+          {activeTemplate === '1' ? (
+            <>
+              <SectionTitle title={d.availableSlots} icon={Sparkles} t={t} />
+              {isLoadingDates ? (
+                <div className={`w-full p-6 rounded-2xl border flex flex-col items-center gap-4 transition-colors duration-300 ${t.cardBg} ${t.cardBorder}`}>
+                  <div className={`w-8 h-8 rounded-full animate-spin border-3 border-t-transparent ${t.accentText.replace('text-', 'border-')}`} style={{borderTopColor: 'transparent'}} />
+                  <p className={`text-xs font-medium animate-pulse ${t.cardTextSub}`}>{d.loadingSlots}</p>
+                </div>
+              ) : flattenedSlots.length === 0 ? (
+                <div className={`w-full p-6 rounded-2xl border flex flex-col items-center justify-center text-center gap-3 transition-colors duration-300 ${t.cardBg} ${t.cardBorder} shadow-sm`}>
+                  <div className={`w-12 h-12 rounded-full flex items-center justify-center ${t.accentBg} ${t.accentText}`}>
+                    <Calendar size={24} />
+                  </div>
+                  <p className={`text-sm font-medium leading-relaxed ${t.cardTextMain}`}>
+                    {vacationDays.length > 0 ? `${bannerText} ${d.slotsOpenLater}` : d.noSlots}
+                  </p>
+                </div>
+              ) : (
+                <>
+                  {showBanner && (
+                    <div className={`mb-4 p-3.5 rounded-2xl flex items-start gap-3 border transition-colors duration-300 ${t.accentBg} ${t.accentText} border-current/20`}>
+                      <Info size={18} className="flex-shrink-0 mt-0.5" />
+                      <p className="text-xs font-medium leading-snug">{bannerText}</p>
+                    </div>
+                  )}
+                  <div className="flex gap-2.5 overflow-x-auto pb-2 -mx-5 px-5 scrollbar-hide snap-x">
+                    {flattenedSlots.map(slot => (
+                      <div 
+                        key={slot.id}
+                        onClick={() => openBooking({ fullDate: slot.fullDate, displayDate: slot.displayDate, time: slot.time })}
+                        className="shrink-0 w-[135px] p-3.5 rounded-2xl bg-[#FAF8F5] border border-[#E7DFD5] shadow-[0_4px_20px_-8px_rgba(44,36,32,0.06)] hover:border-[#C5A059] transition-all cursor-pointer snap-start flex flex-col justify-center active:scale-95 group"
+                      >
+                        <span 
+                          className="text-base font-normal tracking-wide text-[#2B231F] mb-0.5"
+                          style={{ fontFamily: 'Didot, "Bodoni MT", "Cormorant Garamond", Georgia, serif' }}
+                        >
+                          {slot.displayDate}
+                        </span>
+                        <span className="text-xs font-sans tracking-wider text-[#9E7A3E] font-medium">
+                          {slot.time}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                </>
+              )}
+            </>
           ) : (
             <>
-              {showBanner && (
-                <div className={`mb-5 p-3.5 rounded-2xl flex items-start gap-3 border transition-colors duration-300 ${t.accentBg} ${t.accentText} border-current/20`}>
-                  <Info size={20} className="flex-shrink-0 mt-0.5" />
-                  <p className="text-sm font-medium leading-snug">{bannerText}</p>
+              <div className="flex items-center justify-between mb-4 border-b border-[#1E1C1A]/15 pb-2">
+                <h2 className="text-xs uppercase tracking-[0.25em] font-mono text-[#1E1C1A] font-semibold">
+                  {d.availableSlots}
+                </h2>
+                <span className="text-[10px] font-mono tracking-widest text-[#6B635B] uppercase">Personal Access</span>
+              </div>
+
+              {isLoadingDates ? (
+                <div className="w-full p-6 border border-[#E5DFD5] bg-[#FCFAF7] flex flex-col items-center gap-3 rounded-none">
+                  <div className="w-6 h-6 border-2 border-[#1E1C1A] border-t-transparent animate-spin rounded-none" />
+                  <p className="text-xs font-mono uppercase tracking-widest text-[#6B635B]">{d.loadingSlots}</p>
                 </div>
-              )}
-              <div className={`w-full p-6 rounded-3xl border flex flex-col items-center justify-center text-center gap-4 transition-colors duration-300 ${t.cardBg} ${t.cardBorder} shadow-sm`}>
-                <div className={`w-12 h-12 rounded-full flex items-center justify-center mb-1 ${t.accentBg} ${t.accentText}`}>
-                  <Calendar size={24} />
+              ) : flattenedSlots.length === 0 ? (
+                <div className="w-full p-6 border border-[#E5DFD5] bg-[#FCFAF7] text-center rounded-none">
+                  <p className="text-xs font-mono uppercase tracking-widest text-[#6B635B]">
+                    {vacationDays.length > 0 ? `${bannerText} ${d.slotsOpenLater}` : d.noSlots}
+                  </p>
                 </div>
-                <p className={`text-base font-bold ${t.cardTextMain}`}>{d.nearestWindows}</p>
-                <div className="flex flex-wrap justify-center gap-2 w-full">
-                  {availableDates.map(day => (
-                    <span key={day.id} className={`px-4 py-2.5 rounded-xl text-sm font-bold border shadow-sm transition-colors duration-300 ${t.tabInactive}`}>
-                      {day.shortDate}
-                    </span>
+              ) : (
+                <div className="flex gap-2.5 overflow-x-auto pb-2 -mx-5 px-5 scrollbar-hide snap-x">
+                  {flattenedSlots.map(slot => (
+                    <div 
+                      key={slot.id}
+                      onClick={() => openBooking({ fullDate: slot.fullDate, displayDate: slot.displayDate, time: slot.time })}
+                      className="shrink-0 w-[135px] p-3.5 bg-[#FCFAF7] border border-[#E5DFD5] hover:border-[#1E1C1A] transition-all cursor-pointer snap-start rounded-none flex flex-col justify-center active:scale-95"
+                    >
+                      <span className="text-xs font-mono uppercase tracking-widest text-[#1E1C1A] font-semibold mb-1">
+                        {slot.displayDate}
+                      </span>
+                      <span className="text-sm font-light font-mono text-[#6B635B] tracking-wider">
+                        {slot.time}
+                      </span>
+                    </div>
                   ))}
                 </div>
-                <p className={`text-xs font-medium mt-2 transition-colors duration-300 opacity-70 ${t.cardTextSub}`}>
-                  {d.availableDatesInfo}
-                </p>
+              )}
+            </>
+          )}
+        </section>
+
+        {/* Услуги */}
+        <section>
+          {activeTemplate === '1' ? (
+            <>
+              <SectionTitle title={d.priceList} icon={Star} t={t} />
+              <div className="flex items-center justify-center gap-3 sm:gap-6 border-b border-[#E7DFD5]/60 pb-3 mb-6 overflow-x-auto scrollbar-hide">
+                {categories.map(category => (
+                  <button
+                    key={category}
+                    onClick={() => setActiveCategory(category)}
+                    className={`relative py-1.5 px-3 text-xs sm:text-sm tracking-[0.16em] uppercase transition-all duration-300 shrink-0 ${
+                      activeCategory === category 
+                        ? 'text-[#2B231F] font-semibold' 
+                        : 'text-[#8C827A] opacity-60 hover:opacity-100'
+                    }`}
+                    style={{ fontFamily: 'Didot, "Bodoni MT", "Cormorant Garamond", Georgia, serif' }}
+                  >
+                    {category}
+                    {activeCategory === category && (
+                      <span className="absolute -bottom-3 left-0 right-0 h-[1.5px] bg-[#C5A059]" />
+                    )}
+                  </button>
+                ))}
+              </div>
+              <div className="space-y-6">
+                {filteredServices.map(service => (
+                  <div 
+                    key={service.id} 
+                    className="group relative p-6 sm:p-8 rounded-2xl border border-[#E7DFD5] dark:border-[#38332E] bg-[#FAF8F5] dark:bg-[#1C1917]/90 transition-all duration-500 shadow-[0_4px_24px_-8px_rgba(44,36,32,0.06)] hover:shadow-[0_12px_36px_-10px_rgba(180,140,80,0.15)] hover:border-[#C5A059]/60"
+                  >
+                    <div className="absolute top-0 left-8 right-8 h-[1px] bg-gradient-to-r from-transparent via-[#C5A059]/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                    
+                    <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 sm:gap-6 pb-3 border-b border-[#E7DFD5]/70 dark:border-[#38332E]/70">
+                      <h3 
+                        className="text-xl sm:text-2xl font-normal tracking-wide text-[#2B231F] dark:text-[#F5EFE6]"
+                        style={{ fontFamily: 'Didot, "Bodoni MT", "Cormorant Garamond", Georgia, serif' }}
+                      >
+                        {service.name}
+                      </h3>
+                      <div className="flex items-baseline gap-1.5 self-start sm:self-auto shrink-0">
+                        <span 
+                          className="text-lg sm:text-xl font-light tracking-wider text-[#9E7A3E] dark:text-[#D4AF37]"
+                          style={{ fontFamily: 'Didot, "Bodoni MT", "Cormorant Garamond", Georgia, serif' }}
+                        >
+                          {service.price.toLocaleString('ru-RU')}
+                        </span>
+                        <span className="text-[11px] uppercase tracking-[0.2em] font-sans text-[#8A7E72] dark:text-[#A89C8F]">
+                          AMD
+                        </span>
+                      </div>
+                    </div>
+
+                    <div className="inline-flex items-center gap-2 mt-3.5 mb-2.5 px-3 py-1 rounded-full bg-[#F0EAE1]/80 dark:bg-white/5 text-[11px] tracking-wider uppercase text-[#7D7063] dark:text-[#C7BCB0]">
+                      <Clock size={13} className="text-[#9E7A3E]" />
+                      <span>{service.duration}</span>
+                    </div>
+
+                    <p className="text-sm sm:text-base leading-relaxed text-[#5C5248] dark:text-[#D1C7BD] font-light">
+                      {service.description}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </>
+          ) : (
+            <>
+              <div className="flex items-center justify-between mb-4 border-b border-[#1E1C1A]/15 pb-2">
+                <h2 className="text-xs uppercase tracking-[0.25em] font-mono text-[#1E1C1A] font-semibold">
+                  {d.priceList}
+                </h2>
+                <span className="text-[10px] font-mono tracking-widest text-[#6B635B] uppercase">Menu Lookbook</span>
+              </div>
+
+              <div className="flex border-b border-[#1E1C1A]/10 pb-3 mb-5 gap-2 overflow-x-auto scrollbar-hide">
+                {categories.map(category => (
+                  <button
+                    key={category}
+                    onClick={() => setActiveCategory(category)}
+                    className={`text-xs uppercase tracking-[0.18em] font-mono whitespace-nowrap py-1.5 px-3 transition-all ${
+                      activeCategory === category 
+                        ? 'bg-[#1E1C1A] text-[#FAF8F5]' 
+                        : 'text-[#6B635B] hover:text-[#1E1C1A] bg-transparent'
+                    }`}
+                  >
+                    {category}
+                  </button>
+                ))}
+              </div>
+
+              <div className="space-y-3">
+                {filteredServices.map(service => {
+                  const isExpanded = expandedServiceId === service.id;
+                  return (
+                    <div 
+                      key={service.id}
+                      className="bg-[#FCFAF7] border border-[#E5DFD5] transition-all duration-300"
+                    >
+                      <div 
+                        onClick={() => setExpandedServiceId(isExpanded ? null : service.id)}
+                        className="p-5 flex items-center justify-between gap-4 cursor-pointer hover:bg-[#FAF6F0] transition-colors"
+                      >
+                        <div className="flex-1 pr-2">
+                          <h3 className="text-sm sm:text-base font-light tracking-wide text-[#1E1C1A] uppercase mb-1">
+                            {service.name}
+                          </h3>
+                          <span className="text-[11px] font-mono uppercase tracking-widest text-[#6B635B]">
+                            {service.duration}
+                          </span>
+                        </div>
+
+                        <div className="flex items-center gap-3 shrink-0">
+                          <span className="text-sm sm:text-base font-mono font-medium text-[#1E1C1A] whitespace-nowrap">
+                            {service.price.toLocaleString('ru-RU')} AMD
+                          </span>
+                          <span className={`text-xs font-mono text-[#6B635B] transition-transform duration-300 ${isExpanded ? 'rotate-180' : ''}`}>
+                            ↓
+                          </span>
+                        </div>
+                      </div>
+
+                      {isExpanded && (
+                        <div className="px-5 pb-5 pt-2 border-t border-[#E5DFD5]">
+                          <p className="text-sm text-[#4A443E] leading-relaxed mb-4 font-light">
+                            {service.description}
+                          </p>
+                          <div className="w-full aspect-[16/9] rounded-none overflow-hidden bg-[#EAE4D9]">
+                            <img 
+                              src="https://images.unsplash.com/photo-1632345031435-8727f6897d53?auto=format&fit=crop&w=800&q=80" 
+                              alt={service.name} 
+                              className="w-full h-full object-cover filter contrast-[1.05]"
+                            />
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  );
+                })}
               </div>
             </>
           )}
         </section>
 
         <section>
-          <SectionTitle title={d.priceList} icon={Star} t={t} />
-          <div className="flex gap-2 overflow-x-auto pt-3 pb-4 -mx-5 px-5 scrollbar-hide">
-            {categories.map(category => (
-              <button
-                key={category}
-                onClick={() => setActiveCategory(category)}
-                className={`whitespace-nowrap px-5 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 border ${
-                  activeCategory === category ? `${t.tabActive} shadow-md border-transparent scale-105` : `${t.tabInactive} scale-100`
-                }`}
-              >
-                {category}
-              </button>
-            ))}
-          </div>
-          <div className="space-y-4">
-            {filteredServices.map(service => (
-              <div key={service.id} className={`rounded-3xl p-5 border transition-all duration-300 ${t.cardBg} ${t.cardBorder} ${t.cardShadow}`}>
-                <div className="flex justify-between items-start gap-4 mb-2">
-                  <h3 className={`font-bold leading-tight transition-colors duration-300 ${t.cardTextMain}`}>{service.name}</h3>
-                  <span className={`font-black whitespace-nowrap transition-colors duration-300 ${t.cardTextMain}`}>{service.price.toLocaleString('ru-RU')} AMD</span>
-                </div>
-                <div className={`flex items-center gap-2 text-xs font-medium mb-3 transition-colors duration-300 ${t.cardTextSub}`}>
-                  <Clock size={14} />
-                  {service.duration}
-                </div>
-                <p className={`text-sm leading-relaxed transition-colors duration-300 ${t.cardTextSub}`}>
-                  {service.description}
-                </p>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        <section>
           <SectionTitle title={d.paymentDetails} icon={CreditCard} t={t} />
-          <div className={`rounded-3xl p-2 border flex flex-col gap-1 transition-colors duration-300 ${t.cardBg} ${t.cardBorder} ${t.cardShadow}`}>
+          <div className={`${activeTemplate === '2' ? 'rounded-none border-[#E5DFD5]' : 'rounded-3xl ' + t.cardBorder} p-2 border flex flex-col gap-1 transition-colors duration-300 ${t.cardBg} ${t.cardShadow}`}>
             {data.payments.map(payment => (
               <div 
                 key={payment.id} 
                 onClick={() => copyToClipboard(payment.number, payment.id)}
-                className="flex items-center justify-between p-3 rounded-2xl cursor-pointer transition-all duration-300 active:scale-95 hover:bg-black/5 dark:hover:bg-white/5"
+                className={`flex items-center justify-between p-3 ${activeTemplate === '2' ? 'rounded-none' : 'rounded-2xl'} cursor-pointer transition-all duration-300 active:scale-95 hover:bg-black/5 dark:hover:bg-white/5`}
               >
                 <div className="flex items-center gap-3 pointer-events-none">
-                  <div className={`w-10 h-10 rounded-full flex items-center justify-center transition-colors duration-300 ${t.iconWrapper}`}>
+                  <div className={`w-10 h-10 ${activeTemplate === '2' ? 'rounded-none' : 'rounded-full'} flex items-center justify-center transition-colors duration-300 ${t.iconWrapper}`}>
                     <payment.icon size={20} />
                   </div>
                   <div>
@@ -853,7 +1160,7 @@ export default function App() {
                     <p className={`text-sm font-bold font-mono tracking-wide mt-0.5 transition-colors duration-300 ${t.cardTextMain}`}>{payment.number}</p>
                   </div>
                 </div>
-                <button className={`w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 pointer-events-none ${t.cardTextSub}`}>
+                <button className={`w-10 h-10 ${activeTemplate === '2' ? 'rounded-none' : 'rounded-full'} flex items-center justify-center transition-all duration-300 pointer-events-none ${t.cardTextSub}`}>
                   {copiedPaymentId === payment.id ? (
                     <Check size={18} className={`${t.successIcon} scale-110 transition-transform`} />
                   ) : (
@@ -867,11 +1174,11 @@ export default function App() {
 
         <section>
           <SectionTitle title={d.rules} icon={ShieldAlert} t={t} />
-          <div className={`rounded-3xl p-5 border transition-colors duration-300 ${t.policyBg} ${t.cardBorder}`}>
+          <div className={`${activeTemplate === '2' ? 'rounded-none border-[#E5DFD5]' : 'rounded-3xl ' + t.cardBorder} p-5 border transition-colors duration-300 ${t.policyBg}`}>
             <ul className="space-y-3">
               {data.policies.map((policy, idx) => (
                 <li key={idx} className="flex gap-3 text-sm leading-snug">
-                  <span className={`w-1.5 h-1.5 rounded-full mt-1.5 flex-shrink-0 transition-colors duration-300 ${t.bullet}`} />
+                  <span className={`w-1.5 h-1.5 ${activeTemplate === '2' ? 'rounded-none' : 'rounded-full'} mt-1.5 flex-shrink-0 transition-colors duration-300 ${t.bullet}`} />
                   <span className={`transition-colors duration-300 ${t.cardTextMain}`}>{policy}</span>
                 </li>
               ))}
@@ -881,13 +1188,13 @@ export default function App() {
 
         <section>
           <SectionTitle title={d.leaveReview} icon={Star} t={t} />
-          <div className={`rounded-3xl p-2 border flex gap-2 transition-colors duration-300 ${t.cardBg} ${t.cardBorder} ${t.cardShadow}`}>
-            <a href="#" target="_blank" rel="noopener noreferrer" className={`flex-1 py-3.5 rounded-2xl flex flex-col items-center justify-center gap-1.5 transition-all duration-300 active:scale-95 hover:bg-black/5 dark:hover:bg-white/5`}>
+          <div className={`${activeTemplate === '2' ? 'rounded-none border-[#E5DFD5]' : 'rounded-3xl ' + t.cardBorder} p-2 border flex gap-2 transition-colors duration-300 ${t.cardBg} ${t.cardShadow}`}>
+            <a href="#" target="_blank" rel="noopener noreferrer" className={`flex-1 py-3.5 ${activeTemplate === '2' ? 'rounded-none' : 'rounded-2xl'} flex flex-col items-center justify-center gap-1.5 transition-all duration-300 active:scale-95 hover:bg-black/5 dark:hover:bg-white/5`}>
                <span className={`font-bold text-sm ${t.cardTextMain}`}>Google</span>
                <span className={`text-[10px] font-medium opacity-60 ${t.cardTextSub}`}>{d.maps}</span>
             </a>
             <div className={`w-px bg-current opacity-10 my-2 ${t.cardBorder}`} />
-            <a href="#" target="_blank" rel="noopener noreferrer" className={`flex-1 py-3.5 rounded-2xl flex flex-col items-center justify-center gap-1.5 transition-all duration-300 active:scale-95 hover:bg-black/5 dark:hover:bg-white/5`}>
+            <a href="#" target="_blank" rel="noopener noreferrer" className={`flex-1 py-3.5 ${activeTemplate === '2' ? 'rounded-none' : 'rounded-2xl'} flex flex-col items-center justify-center gap-1.5 transition-all duration-300 active:scale-95 hover:bg-black/5 dark:hover:bg-white/5`}>
                <span className={`font-bold text-sm ${t.cardTextMain}`}>Yandex</span>
                <span className={`text-[10px] font-medium opacity-60 ${t.cardTextSub}`}>{d.maps}</span>
             </a>
@@ -898,15 +1205,15 @@ export default function App() {
 
       <footer className={`mt-12 pt-10 pb-36 px-5 flex flex-col items-center w-full transition-colors duration-300 relative z-10 ${t.footerBg}`}>
         <div className="w-full max-w-xs space-y-3 mb-8">
-          <button onClick={() => setIsQrOpen(true)} className={`w-full py-3.5 rounded-2xl font-semibold flex items-center justify-center gap-3 transition-all duration-300 active:scale-95 ${t.btnSecondary}`}>
+          <button onClick={() => setIsQrOpen(true)} className={`w-full py-3.5 ${activeTemplate === '2' ? 'rounded-none' : 'rounded-2xl'} font-semibold flex items-center justify-center gap-3 transition-all duration-300 active:scale-95 ${t.btnSecondary}`}>
             <QrCode size={18} />
             {d.showQr}
           </button>
-          <button onClick={handleDownloadVCard} className={`w-full py-3.5 rounded-2xl font-semibold flex items-center justify-center gap-3 transition-all duration-300 active:scale-95 ${t.btnSecondary}`}>
+          <button onClick={handleDownloadVCard} className={`w-full py-3.5 ${activeTemplate === '2' ? 'rounded-none' : 'rounded-2xl'} font-semibold flex items-center justify-center gap-3 transition-all duration-300 active:scale-95 ${t.btnSecondary}`}>
             <UserPlus size={18} />
             {d.addToContacts}
           </button>
-          <button onClick={handleInstallPWA} className={`w-full py-3.5 rounded-2xl font-semibold flex items-center justify-center gap-3 transition-all duration-300 active:scale-95 ${t.btnSecondary} border-2 ${t.inputBorder.replace('focus-within:', '')}`}>
+          <button onClick={handleInstallPWA} className={`w-full py-3.5 ${activeTemplate === '2' ? 'rounded-none' : 'rounded-2xl'} font-semibold flex items-center justify-center gap-3 transition-all duration-300 active:scale-95 ${t.btnSecondary} border-2 ${t.inputBorder.replace('focus-within:', '')}`}>
             <Smartphone size={18} />
             {d.installApp}
           </button>
@@ -915,13 +1222,13 @@ export default function App() {
         <h3 className={`font-bold mb-6 transition-colors duration-300 ${t.appTextMain}`}>{d.contactMe}</h3>
         
         <div className="flex justify-center gap-4 mb-8">
-          <a href="#" className={`w-12 h-12 rounded-full flex items-center justify-center active:scale-90 transition-all duration-300 shadow-sm ${t.iconWrapper}`}>
+          <a href="#" className={`w-12 h-12 ${activeTemplate === '2' ? 'rounded-none' : 'rounded-full'} flex items-center justify-center active:scale-90 transition-all duration-300 shadow-sm ${t.iconWrapper}`}>
             <Instagram size={22} />
           </a>
-          <a href="#" className={`w-12 h-12 rounded-full flex items-center justify-center active:scale-90 transition-all duration-300 shadow-sm ${t.iconWrapper}`}>
+          <a href="#" className={`w-12 h-12 ${activeTemplate === '2' ? 'rounded-none' : 'rounded-full'} flex items-center justify-center active:scale-90 transition-all duration-300 shadow-sm ${t.iconWrapper}`}>
             <Send size={22} className="-ml-1" />
           </a>
-          <a href="#" className={`w-12 h-12 rounded-full flex items-center justify-center active:scale-90 transition-all duration-300 shadow-sm ${t.iconWrapper}`}>
+          <a href="#" className={`w-12 h-12 ${activeTemplate === '2' ? 'rounded-none' : 'rounded-full'} flex items-center justify-center active:scale-90 transition-all duration-300 shadow-sm ${t.iconWrapper}`}>
             <Phone size={22} />
           </a>
         </div>
@@ -939,29 +1246,16 @@ export default function App() {
       </footer>
 
       <div className={`fixed bottom-6 left-0 right-0 z-[90] flex justify-center pointer-events-none transition-all duration-500 ease-out ${!bookingModal.isOpen && !isQrOpen ? 'opacity-100' : 'opacity-0'}`}>
-        <div className="w-full max-w-md px-5 flex items-end justify-between gap-4">
-          
-          <div className={`flex-1 transition-all duration-500 ease-out ${showFab ? 'translate-y-0 opacity-100 pointer-events-auto' : 'translate-y-12 opacity-0 pointer-events-none'}`}>
-            <button onClick={openBooking} className={`w-full py-4 rounded-2xl font-bold text-lg shadow-[0_10px_40px_-10px_rgba(0,0,0,0.4)] active:scale-95 transition-all duration-300 flex items-center justify-center gap-2 ${t.btnPrimary}`}>
-              <Calendar size={20} />
-              {d.bookOnline}
-            </button>
-          </div>
-
-          <div className="flex flex-col items-end gap-3 pointer-events-auto shrink-0">
-            <div className={`flex flex-col gap-2 transition-all duration-300 origin-bottom ${isThemeMenuOpen ? 'scale-100 opacity-100' : 'scale-0 opacity-0 pointer-events-none'}`}>
-              {THEME_OPTIONS.map(opt => (
-                <button
-                  key={opt.id}
-                  onClick={() => { setTheme(opt.id); setIsThemeMenuOpen(false); }}
-                  className={`w-12 h-12 rounded-full shadow-lg border-2 transition-transform active:scale-90 ${theme === opt.id ? 'scale-110' : 'scale-100'}`}
-                  style={{ backgroundColor: opt.color, borderColor: opt.border }}
-                  aria-label={`Switch to ${opt.id} theme`}
-                />
-              ))}
-            </div>
-            <button onClick={() => setIsThemeMenuOpen(!isThemeMenuOpen)} className={`w-14 h-14 rounded-full shadow-[0_10px_40px_-10px_rgba(0,0,0,0.4)] flex items-center justify-center transition-all duration-300 active:scale-90 ${t.btnPrimary}`}>
-              <Palette size={24} className="text-current" />
+        <div className="w-full max-w-md px-5">
+          <div className={`w-full transition-all duration-500 ease-out ${showFab ? 'translate-y-0 opacity-100 pointer-events-auto' : 'translate-y-12 opacity-0 pointer-events-none'}`}>
+            <button 
+              onClick={openBooking} 
+              className={`w-full py-4 px-6 ${activeTemplate === '2' ? 'rounded-none bg-[#1E1C1A] text-[#FAF8F5]' : 'rounded-full bg-gradient-to-r from-[#2C2420] via-[#3A3029] to-[#2C2420] text-[#FAF8F5] border border-[#C5A059]/40 group'} font-sans text-xs tracking-[0.25em] uppercase font-medium shadow-[0_12px_35px_-10px_rgba(44,36,32,0.4)] active:scale-[0.98] transition-all duration-300 flex items-center justify-between`}
+            >
+              <span className="pl-2">{d.bookOnline}</span>
+              <div className={`w-8 h-8 ${activeTemplate === '2' ? 'rounded-none bg-white/10 text-white' : 'rounded-full bg-[#C5A059] text-white'} flex items-center justify-center`}>
+                <Calendar size={15} />
+              </div>
             </button>
           </div>
         </div>
